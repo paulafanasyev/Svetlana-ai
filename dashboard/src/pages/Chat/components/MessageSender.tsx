@@ -4,6 +4,7 @@ import { useTranslation } from "react-i18next";
 import ExpertAgentAvatar from "./ExpertAgentAvatar";
 import { useChatAgentProfile } from "../ChatAgentProfileContext";
 import styles from "../index.module.less";
+import { publicUrl } from "../../../utils/publicUrl";
 
 /** Shared message-row avatar size. */
 export const MESSAGE_AVATAR_SIZE = 36;
@@ -57,7 +58,29 @@ export function ExpertMessageAvatar({
   const profile = useChatAgentProfile();
   const label = (tooltip ?? name)?.trim() || "";
   const canOpen = Boolean(profile?.canOpen);
-  const avatar = (
+  const isSvetlana = /^(светлана|svetlana)(\\b|\\s)/i.test(label);
+  const avatar = isSvetlana && !iconUrl?.trim() ? (
+    <span
+      className={styles.expertAgentAvatar}
+      style={{
+        width: MESSAGE_AVATAR_SIZE,
+        height: MESSAGE_AVATAR_SIZE,
+        borderRadius: "50%",
+        overflow: "hidden",
+        display: "inline-flex",
+        border: "2px solid #10b981",
+        boxShadow: "0 0 0 3px rgba(16,185,129,.12)",
+      }}
+    >
+      <img
+        src={publicUrl("images/avatar/svetlana-master.jpg")}
+        alt=""
+        width={MESSAGE_AVATAR_SIZE}
+        height={MESSAGE_AVATAR_SIZE}
+        style={{ width: "100%", height: "100%", objectFit: "cover" }}
+      />
+    </span>
+  ) : (
     <ExpertAgentAvatar
       iconName={iconName}
       iconUrl={iconUrl}
