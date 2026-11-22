@@ -12,6 +12,7 @@ import { speakBrowserText, stopBrowserSpeech } from "../utils/browserSpeech";
 import { isMobileUserAgent } from "../utils/mobileDevice";
 import { WavStreamPlayer } from "../utils/wavStreamPlayer";
 import { speechLocaleFromUi } from "../utils/localePrefs";
+import { message as antMessage } from "@/utils/antdMessage";
 
 function edgeVoiceForLocale(locale: string): string {
   const normalized = locale.toLowerCase();
@@ -20,8 +21,6 @@ function edgeVoiceForLocale(locale: string): string {
   if (normalized.startsWith("zh")) return "zh-CN-XiaoxiaoNeural";
   return "en-US-JennyNeural";
 }
-
-import { message as antMessage } from "@/utils/antdMessage";
 
 export function useVoiceOutput() {
   const { t, i18n } = useTranslation();
@@ -175,7 +174,7 @@ export function useVoiceOutput() {
         finishSpeaking();
       }
     },
-    [finishSpeaking, speakMimoStream, t],
+    [finishSpeaking, speakMimoStream, t, i18n.language],
   );
 
   const speakWithBrowser = useCallback(
