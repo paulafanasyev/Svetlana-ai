@@ -7,7 +7,7 @@ from functools import lru_cache
 from importlib import resources
 from typing import Any
 
-from octop.infra.utils.locale import Locale, SUPPORTED_LOCALES, normalize_locale
+from octop.infra.utils.locale import Locale, normalize_locale, SUPPORTED_LOCALES
 
 _FALLBACK_LOCALE: Locale = "en"
 
