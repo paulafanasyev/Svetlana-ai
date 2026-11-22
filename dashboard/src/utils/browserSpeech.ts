@@ -92,13 +92,16 @@ function pickVoiceForLocale(
 
   if (matches.length === 0) return undefined;
 
+  const preferredVoice =
+    prefix === "ru"
+      ? /(svetlana|dariya|irina|milena|alena|алена|алёна|милена|ирина|светлана|female|жен)/i
+      : prefix === "vi"
+        ? /(hoai.?my|female|woman|nữ)/i
+        : /(huihui|xiaoxiao|tingting|yaoyao|kangkang|mandarin|chinese|中文|普通话)/i;
+
   return (
+    matches.find((v) => preferredVoice.test(v.name)) ??
     matches.find((v) => v.localService) ??
-    matches.find((v) =>
-      /huihui|xiaoxiao|tingting|yaoyao|kangkang|mandarin|chinese|中文|普通话/i.test(
-        v.name,
-      ),
-    ) ??
     matches.find((v) => !/google/i.test(v.name)) ??
     matches[0]
   );
