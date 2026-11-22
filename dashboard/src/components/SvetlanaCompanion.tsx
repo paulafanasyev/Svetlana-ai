@@ -11,7 +11,7 @@ export default function SvetlanaCompanion() {
   const location = useLocation();
   const { speakingId } = useVoiceOutputContext();
 
-  if (location.pathname === "/login" || location.pathname === "/setup" || location.pathname === "/invite") return null;
+  if (location.pathname === "/login" || location.pathname === "/setup" || location.pathname === "/invite" || location.pathname === "/chat" || location.pathname.startsWith("/chat/")) return null;
 
   const speaking = Boolean(speakingId);
   const label = t("svetlana.openChat", "Открыть чат со Светланой");
