@@ -59,7 +59,8 @@ export function ExpertMessageAvatar({
   const profile = useChatAgentProfile();
   const label = (tooltip ?? name)?.trim() || "";
   const canOpen = Boolean(profile?.canOpen);
-  const isSvetlana = /^(светлана|svetlana)(\\b|\\s)/i.test(label);
+  const normalizedName = label.toLowerCase();
+  const isSvetlana = normalizedName === "светлана" || normalizedName.startsWith("светлана ") || normalizedName === "svetlana" || normalizedName.startsWith("svetlana ");
   const avatar = isSvetlana && !iconUrl?.trim() ? (
     <span
       className={styles.expertAgentAvatar}
