@@ -477,8 +477,8 @@ export default function Sidebar({
   // caption row, so the logo starts at the top of the rail.
   const reserveTrafficLightBand = desktopChrome === "mac";
   const wordmarkSrc = isDark
-    ? publicUrl("logo_horizontal_white.png")
-    : publicUrl("logo_horizontal_dark.png");
+    ? publicUrl("svetlana-wordmark.svg")
+    : publicUrl("svetlana-wordmark.svg");
 
   const selectMinimalPane = useCallback(
     (pane: MinimalNavPane, opts?: { expand?: boolean }) => {
@@ -520,8 +520,8 @@ export default function Sidebar({
   const brandInner = (
     <>
       <img
-        src={isRailCollapsed ? publicUrl("logo_mark.svg") : wordmarkSrc}
-        alt="Octop"
+        src={isRailCollapsed ? publicUrl("svetlana-mark.svg") : wordmarkSrc}
+        alt="Светлана 2.0"
         className={isRailCollapsed ? styles.brandMarkCollapsed : undefined}
         style={{
           height: isRailCollapsed ? 26 : isMobile ? 38 : 36,
