@@ -16,6 +16,7 @@ type SpeechError = SpeechSynthesisErrorEvent["error"];
 
 export interface SpeakBrowserCallbacks {
   onDone: () => void;
+  locale?: string;
   /** Chrome has no voice for this language (common on Linux with zh content). */
   onNoVoice?: () => void;
 }
@@ -201,8 +202,8 @@ export function speakBrowserText(
   void waitForVoices().then((voices) => {
     if (rt.session !== session) return;
 
-    const locale = detectSpeechLocale(text);
-    if (!hasBrowserVoiceForText(text, voices)) {
+    const locale = detectSpeechLocale(text, callbacks.locale);
+    if (!hasBrowserVoiceForText(text, voices, locale)) {
       callbacks.onNoVoice?.();
       return;
     }
