@@ -1,8 +1,8 @@
 {
   "id": "/",
-  "name": "Octop",
-  "short_name": "Octop",
-  "description": "Smarter self-hosted AI assistant — multi-user, multi-agent",
+  "name": "Светлана 2.0",
+  "short_name": "Светлана",
+  "description": "Светлана 2.0 — интеллектуальный помощник",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
@@ -37,5 +37,8 @@
       "purpose": "any"
     }
   ],
-  "categories": ["productivity", "utilities"]
+  "categories": [
+    "productivity",
+    "utilities"
+  ]
 }
