@@ -1,9 +1,13 @@
 import { createGlobalStyle } from "antd-style";
 import { ConfigProvider, theme as antdTheme } from "antd";
 import zhCN from "antd/locale/zh_CN";
+import ruRU from "antd/locale/ru_RU";
+import viVN from "antd/locale/vi_VN";
 import enUS from "antd/locale/en_US";
 import dayjs from "dayjs";
 import "dayjs/locale/zh-cn";
+import "dayjs/locale/ru";
+import "dayjs/locale/vi";
 import { useEffect } from "react";
 import {
   DesktopChromeProvider,
@@ -56,9 +60,12 @@ function ThemedApp() {
   // Make antd built-ins (Popconfirm OK/Cancel, Modal default footer, Empty,
   // Pagination, DatePicker, Table… ) follow the current UI language.
   // DatePicker month/weekday labels come from dayjs — keep it in sync too.
-  const isZh = i18n.language?.toLowerCase().startsWith("zh") ?? false;
-  const antdLocale = isZh ? zhCN : enUS;
-  dayjs.locale(isZh ? "zh-cn" : "en");
+  const language = i18n.language?.toLowerCase() ?? "ru";
+  const isZh = language.startsWith("zh");
+  const isRu = language.startsWith("ru");
+  const isVi = language.startsWith("vi");
+  const antdLocale = isZh ? zhCN : isRu ? ruRU : isVi ? viVN : enUS;
+  dayjs.locale(isZh ? "zh-cn" : isRu ? "ru" : isVi ? "vi" : "en");
 
   useUnauthorizedRedirect();
 
