@@ -11,11 +11,12 @@ import { prepareSpeechText } from "../utils/plainTextForSpeech";
 import { speakBrowserText, stopBrowserSpeech } from "../utils/browserSpeech";
 import { isMobileUserAgent } from "../utils/mobileDevice";
 import { WavStreamPlayer } from "../utils/wavStreamPlayer";
+import { speechLocaleFromUi } from "../utils/localePrefs";
 
 import { message as antMessage } from "@/utils/antdMessage";
 
 export function useVoiceOutput() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const [speakingId, setSpeakingId] = useState<string | null>(null);
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const streamPlayerRef = useRef<WavStreamPlayer | null>(null);
@@ -169,6 +170,7 @@ export function useVoiceOutput() {
   const speakWithBrowser = useCallback(
     (plain: string, gen: number) => {
       speakBrowserText(plain, {
+        locale: speechLocaleFromUi(i18n.language),
         onDone: () => {
           if (playGenerationRef.current !== gen) return;
           finishSpeaking();
@@ -183,7 +185,7 @@ export function useVoiceOutput() {
         },
       });
     },
-    [finishSpeaking, speakWithServer, t],
+    [finishSpeaking, speakWithServer, t, i18n.language],
   );
 
   const beginPlayback = useCallback(
