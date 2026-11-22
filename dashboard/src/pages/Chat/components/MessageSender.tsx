@@ -40,6 +40,7 @@ interface ExpertMessageAvatarProps {
   shared?: boolean;
   owned?: boolean;
   ownerName?: string | null;
+  speaking?: boolean;
 }
 
 export function ExpertMessageAvatar({
@@ -53,6 +54,7 @@ export function ExpertMessageAvatar({
   shared,
   owned,
   ownerName,
+  speaking = false,
 }: ExpertMessageAvatarProps) {
   const { t } = useTranslation();
   const profile = useChatAgentProfile();
@@ -70,7 +72,7 @@ export function ExpertMessageAvatar({
         overflow: "hidden",
         display: "inline-flex",
         border: "2px solid #10b981",
-        boxShadow: "0 0 0 3px rgba(16,185,129,.12)",
+        boxShadow: speaking ? "0 0 0 5px rgba(16,185,129,.28), 0 0 20px rgba(16,185,129,.34)" : "0 0 0 3px rgba(16,185,129,.12)",
       }}
     >
       <img
