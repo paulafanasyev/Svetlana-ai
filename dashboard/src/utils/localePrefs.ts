@@ -20,7 +20,7 @@ export function normalizeUiLocale(raw: string | null | undefined): UiLocale {
   if (value.startsWith("ru")) return "ru";
   if (value.startsWith("vi")) return "vi";
   if (value.startsWith("zh")) return "zh";
-  return "en";
+  return "ru";
 }
 
 export function readStoredUiLocale(): UiLocale | null {
@@ -36,7 +36,7 @@ export function storeUiLocale(locale: UiLocale): void {
 }
 
 export function resolveInitialLocale(): UiLocale {
-  return readStoredUiLocale() ?? detectBrowserLocale();
+  return readStoredUiLocale() ?? "ru";
 }
 
 export function syncDocumentLang(locale: UiLocale): void {
