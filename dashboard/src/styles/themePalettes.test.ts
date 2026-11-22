@@ -45,7 +45,11 @@ describe("theme palettes", () => {
     expect(ANTD_BRAND_TOKENS.rose.dark.colorLink).toBe("#F08B9A");
   });
 
-  it("uses Svetlana emerald as the new default brand", () => {\n    expect(DEFAULT_PALETTE).toBe("emerald");\n  });\n\n  it.each(VALID_PALETTES.filter((palette) => palette !== "rose"))(
+  it("uses Svetlana emerald as the new default brand", () => {
+    expect(DEFAULT_PALETTE).toBe("emerald");
+  });
+
+  it.each(VALID_PALETTES.filter((palette) => palette !== "rose"))(
     "keeps %s solid Ant Design states readable with white text",
     (palette) => {
       for (const mode of ["light", "dark"] as const) {
