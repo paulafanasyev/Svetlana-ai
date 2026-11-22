@@ -1,0 +1,35 @@
+{
+  "app": {
+    "pageTitle": "Svetlana"
+  },
+  "language": {
+    "title": "Ngôn ngữ giao diện",
+    "description": "Chọn ngôn ngữ cho Svetlana.",
+    "saveFailed": "Không thể lưu tùy chọn ngôn ngữ."
+  },
+  "common": {
+    "save": "Lưu",
+    "cancel": "Hủy",
+    "confirm": "Xác nhận",
+    "delete": "Xóa",
+    "edit": "Chỉnh sửa",
+    "create": "Tạo",
+    "add": "Thêm",
+    "loading": "Đang tải…",
+    "retry": "Thử lại",
+    "done": "Hoàn tất",
+    "pending": "Đang chờ",
+    "running": "Đang thực hiện",
+    "close": "Đóng",
+    "back": "Quay lại",
+    "search": "Tìm kiếm",
+    "settings": "Cài đặt",
+    "unknownError": "Lỗi không xác định"
+  },
+  "layout": {
+    "collapsePanel": "Thu gọn bảng",
+    "expandPanel": "Mở rộng bảng",
+    "collapseNav": "Thu gọn điều hướng",
+    "expandNav": "Mở rộng điều hướng"
+  }
+}
