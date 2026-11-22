@@ -1,6 +1,6 @@
 {
   "app": {
-    "pageTitle": "Svetlana"
+    "pageTitle": "Svetlana 2.0"
   },
   "language": {
     "title": "Ngôn ngữ giao diện",
@@ -31,5 +31,11 @@
     "expandPanel": "Mở rộng bảng",
     "collapseNav": "Thu gọn điều hướng",
     "expandNav": "Mở rộng điều hướng"
+  },
+  "svetlana": {
+    "name": "Svetlana 2.0",
+    "openChat": "Mở cuộc trò chuyện với Svetlana",
+    "speaking": "Đang nói…",
+    "ready": "Sẵn sàng trợ giúp"
   }
 }
