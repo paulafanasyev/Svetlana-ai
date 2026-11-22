@@ -39,14 +39,16 @@ describe("localePrefs", () => {
     expect(resolveInitialLocale()).toBe("zh");
     expect(readStoredUiLocale()).toBe("zh");
     localStorage.removeItem(UI_LOCALE_STORAGE_KEY);
-    expect(resolveInitialLocale()).toBe("en");
+    expect(resolveInitialLocale()).toBe("ru");
   });
 
   it("speechLocaleFromUi maps UI locale to STT BCP-47 tags", () => {
     expect(speechLocaleFromUi("zh")).toBe("zh-CN");
     expect(speechLocaleFromUi("zh-CN")).toBe("zh-CN");
+    expect(speechLocaleFromUi("ru")).toBe("ru-RU");
+    expect(speechLocaleFromUi("vi")).toBe("vi-VN");
     expect(speechLocaleFromUi("en")).toBe("en-US");
     expect(speechLocaleFromUi("en-US")).toBe("en-US");
-    expect(speechLocaleFromUi(null)).toBe("zh-CN");
+    expect(speechLocaleFromUi(null)).toBe("ru-RU");
   });
 });
