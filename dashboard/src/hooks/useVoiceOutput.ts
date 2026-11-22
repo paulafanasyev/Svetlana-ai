@@ -13,6 +13,14 @@ import { isMobileUserAgent } from "../utils/mobileDevice";
 import { WavStreamPlayer } from "../utils/wavStreamPlayer";
 import { speechLocaleFromUi } from "../utils/localePrefs";
 
+function edgeVoiceForLocale(locale: string): string {
+  const normalized = locale.toLowerCase();
+  if (normalized.startsWith("ru")) return "ru-RU-SvetlanaNeural";
+  if (normalized.startsWith("vi")) return "vi-VN-HoaiMyNeural";
+  if (normalized.startsWith("zh")) return "zh-CN-XiaoxiaoNeural";
+  return "en-US-JennyNeural";
+}
+
 import { message as antMessage } from "@/utils/antdMessage";
 
 export function useVoiceOutput() {
@@ -127,7 +135,10 @@ export function useVoiceOutput() {
       }
 
       try {
-        const blob = await voiceApi.synthesize(plain, provider);
+        const active = cachedActiveVoice();
+        const ttsProvider = provider ?? active?.tts;
+        const voiceId = ttsProvider === "edge" ? edgeVoiceForLocale(i18n.language) : undefined;
+        const blob = await voiceApi.synthesize(plain, provider, voiceId);
         if (playGenerationRef.current !== gen) return;
 
         const url = URL.createObjectURL(blob);
