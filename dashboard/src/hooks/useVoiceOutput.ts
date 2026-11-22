@@ -12,6 +12,7 @@ import { speakBrowserText, stopBrowserSpeech } from "../utils/browserSpeech";
 import { isMobileUserAgent } from "../utils/mobileDevice";
 import { WavStreamPlayer } from "../utils/wavStreamPlayer";
 import { speechLocaleFromUi } from "../utils/localePrefs";
+import { speechLocaleFromUi } from "../utils/localePrefs";
 
 import { message as antMessage } from "@/utils/antdMessage";
 
