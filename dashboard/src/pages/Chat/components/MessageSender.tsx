@@ -5,6 +5,7 @@ import ExpertAgentAvatar from "./ExpertAgentAvatar";
 import { useChatAgentProfile } from "../ChatAgentProfileContext";
 import styles from "../index.module.less";
 import { publicUrl } from "../../../utils/publicUrl";
+import { publicUrl } from "../../../utils/publicUrl";
 
 /** Shared message-row avatar size. */
 export const MESSAGE_AVATAR_SIZE = 36;
