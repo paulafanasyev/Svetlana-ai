@@ -1,63 +1,49 @@
-export type UiLocale = "zh" | "en";
+export type UiLocale = "ru" | "vi" | "en" | "zh";
 
-export const UI_LOCALE_STORAGE_KEY = "octop:ui-locale";
+export const UI_LOCALE_STORAGE_KEY = "svetlana:ui-locale";
 
-/** Map browser language tags to a supported dashboard locale. */
 export function detectBrowserLocale(): UiLocale {
-  if (typeof navigator === "undefined") return "en";
-
-  const candidates =
-    navigator.languages?.length > 0
-      ? navigator.languages
-      : [navigator.language];
-
+  if (typeof navigator === "undefined") return "ru";
+  const candidates = navigator.languages?.length > 0 ? navigator.languages : [navigator.language];
   for (const raw of candidates) {
     const lang = raw?.toLowerCase() ?? "";
+    if (lang.startsWith("ru")) return "ru";
+    if (lang.startsWith("vi")) return "vi";
     if (lang.startsWith("zh")) return "zh";
     if (lang.startsWith("en")) return "en";
   }
-
-  const primary = navigator.language?.toLowerCase() ?? "";
-  if (primary.startsWith("zh")) return "zh";
-  if (primary.startsWith("en")) return "en";
-
-  return "en";
+  return "ru";
 }
 
 export function normalizeUiLocale(raw: string | null | undefined): UiLocale {
-  if (!raw) return "zh";
-  return raw.toLowerCase().startsWith("zh") ? "zh" : "en";
+  const value = raw?.toLowerCase() ?? "";
+  if (value.startsWith("ru")) return "ru";
+  if (value.startsWith("vi")) return "vi";
+  if (value.startsWith("zh")) return "zh";
+  return "en";
 }
 
 export function readStoredUiLocale(): UiLocale | null {
   try {
     const raw = localStorage.getItem(UI_LOCALE_STORAGE_KEY);
-    if (raw === "zh" || raw === "en") return raw;
-  } catch {
-    // localStorage unavailable
-  }
+    if (raw === "ru" || raw === "vi" || raw === "en" || raw === "zh") return raw;
+  } catch { /* localStorage unavailable */ }
   return null;
 }
 
 export function storeUiLocale(locale: UiLocale): void {
-  try {
-    localStorage.setItem(UI_LOCALE_STORAGE_KEY, locale);
-  } catch {
-    // quota / disabled
-  }
+  try { localStorage.setItem(UI_LOCALE_STORAGE_KEY, locale); } catch { /* storage unavailable */ }
 }
 
-/** Stored user preference wins; otherwise follow the browser. */
 export function resolveInitialLocale(): UiLocale {
   return readStoredUiLocale() ?? detectBrowserLocale();
 }
 
 export function syncDocumentLang(locale: UiLocale): void {
-  if (typeof document === "undefined") return;
-  document.documentElement.lang = locale === "zh" ? "zh-CN" : "en";
+  if (typeof document !== "undefined") document.documentElement.lang = locale === "zh" ? "zh-CN" : locale;
 }
 
-/** BCP-47 tag for STT / SpeechRecognition from dashboard UI locale. */
 export function speechLocaleFromUi(locale: string | null | undefined): string {
-  return normalizeUiLocale(locale) === "zh" ? "zh-CN" : "en-US";
+  const value = normalizeUiLocale(locale);
+  return value === "zh" ? "zh-CN" : value === "ru" ? "ru-RU" : value === "vi" ? "vi-VN" : "en-US";
 }
