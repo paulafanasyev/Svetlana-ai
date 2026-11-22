@@ -852,6 +852,7 @@ function MessageBubble({
       tooltip={avatarTooltip}
       profileAgentId={avatarProfileId}
       managedRunner={managedRunnerId(expert)}
+      speaking={speakingId === message.id}
       {...incomingShareProps(expert)}
     />
   ) : null;
