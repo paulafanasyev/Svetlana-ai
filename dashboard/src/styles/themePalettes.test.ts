@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest";
 import {
   ANTD_BRAND_TOKENS,
+  DEFAULT_PALETTE,
   VALID_PALETTES,
   brandPrimary,
 } from "./themePalettes";
@@ -36,7 +37,7 @@ describe("theme palettes", () => {
     ]);
   });
 
-  it("keeps the historic Elegant Rose default brand tokens", () => {
+  it("keeps the historic rose palette tokens available", () => {
     expect(ANTD_BRAND_TOKENS.rose.light.colorPrimary).toBe("#E85D75");
     expect(ANTD_BRAND_TOKENS.rose.light.colorPrimaryHover).toBe("#D14A62");
     expect(ANTD_BRAND_TOKENS.rose.light.colorPrimaryActive).toBe("#B83A50");
@@ -44,7 +45,7 @@ describe("theme palettes", () => {
     expect(ANTD_BRAND_TOKENS.rose.dark.colorLink).toBe("#F08B9A");
   });
 
-  it.each(VALID_PALETTES.filter((palette) => palette !== "rose"))(
+  it("uses Svetlana emerald as the new default brand", () => {\n    expect(DEFAULT_PALETTE).toBe("emerald");\n  });\n\n  it.each(VALID_PALETTES.filter((palette) => palette !== "rose"))(
     "keeps %s solid Ant Design states readable with white text",
     (palette) => {
       for (const mode of ["light", "dark"] as const) {
