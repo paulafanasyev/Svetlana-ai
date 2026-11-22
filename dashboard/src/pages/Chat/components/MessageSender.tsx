@@ -59,7 +59,7 @@ export function ExpertMessageAvatar({
   const label = (tooltip ?? name)?.trim() || "";
   const canOpen = Boolean(profile?.canOpen);
   const normalizedName = label.toLowerCase();
-  const isSvetlana = normalizedName === "светлана" || normalizedName.startsWith("светлана ") || normalizedName === "svetlana" || normalizedName.startsWith("svetlana ");
+  const isSvetlana = normalizedName === "светлана" || normalizedName.startsWith("светлана ") || normalizedName === "svetlana" || normalizedName.startsWith("svetlana ") || (!iconName?.trim() && !iconUrl?.trim());
   const avatar = isSvetlana && !iconUrl?.trim() ? (
     <span
       className={styles.expertAgentAvatar}
