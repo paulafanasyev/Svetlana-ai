@@ -55,8 +55,12 @@ export function initI18n(): Promise<void> {
     initPromise = (async () => {
       const initial = resolveInitialLocale();
       const primaryBundle = await loadLocaleBundle(initial);
+      const fallbackBundle = initial === "en" ? primaryBundle : await loadLocaleBundle("en");
       await i18n.use(initReactI18next).init({
-        resources: { [initial]: { translation: primaryBundle } },
+        resources: {
+          [initial]: { translation: primaryBundle },
+          en: { translation: fallbackBundle },
+        },
         lng: initial,
         fallbackLng: "en",
         supportedLngs: ["ru", "vi", "en", "zh"],
