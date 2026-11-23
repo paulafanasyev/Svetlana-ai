@@ -1759,7 +1759,9 @@
     "toolCallLimit": {
       "enabled": "Giới hạn các lần gọi công cụ lặp lại",
       "runLimit": "Số lần gọi giống nhau liên tiếp",
-      "runLimitPlaceholder": "40"
+      "runLimitPlaceholder": "40",
+      "enabledTooltip": "Theo dõi chuỗi gọi cùng một công cụ với cùng tham số. Công cụ khác hoặc tham số khác sẽ bắt đầu chuỗi mới. Lượt xử lý kết thúc khi đạt giới hạn. Tắt tùy chọn này để không giới hạn.",
+      "runLimitTooltip": "Số lần tối đa có thể gọi liên tiếp cùng một công cụ với cùng tham số. Các công cụ và tham số khác không được tính. Để trống sẽ dùng giá trị 40."
     },
     "modelRetry": {
       "enabled": "Thử lại yêu cầu mô hình",
@@ -1768,7 +1770,11 @@
       "initialDelay": "Độ trễ ban đầu trước khi thử lại (giây)",
       "initialDelayPlaceholder": "1",
       "maxDelay": "Độ trễ tối đa trước khi thử lại (giây)",
-      "maxDelayPlaceholder": "60"
+      "maxDelayPlaceholder": "60",
+      "enabledTooltip": "Thử lại yêu cầu mô hình khi phát sinh lỗi. Khi hết số lần thử, lượt xử lý sẽ báo lỗi thay vì tự tạo câu trả lời. Lưu cài đặt sẽ tải lại chuyên gia.",
+      "maxRetriesTooltip": "Số lần thử bổ sung sau lần yêu cầu mô hình đầu tiên thất bại. Để trống sẽ dùng 2. Đặt 0 để tắt việc thử lại nhưng vẫn giữ công tắc bật.",
+      "initialDelayTooltip": "Số giây chờ trước lần thử lại đầu tiên. Các khoảng chờ tiếp theo sẽ tăng gấp đôi cho đến độ trễ tối đa. Mặc định là 1 giây.",
+      "maxDelayTooltip": "Thời gian chờ tối đa giữa các lần thử lại yêu cầu mô hình. Mặc định là 60 giây và phải lớn hơn hoặc bằng độ trễ ban đầu."
     },
     "toolRetry": {
       "enabled": "Thử lại lệnh gọi công cụ",
@@ -1777,7 +1783,11 @@
       "initialDelay": "Độ trễ ban đầu trước khi thử lại (giây)",
       "initialDelayPlaceholder": "1",
       "maxDelay": "Độ trễ tối đa trước khi thử lại (giây)",
-      "maxDelayPlaceholder": "60"
+      "maxDelayPlaceholder": "60",
+      "enabledTooltip": "Thử lại công cụ khi công cụ phát sinh ngoại lệ. Kết quả chỉ chứa chuỗi lỗi sẽ không được thử lại. Khi hết số lần thử, lỗi sẽ được chuyển lại cho mô hình. Lưu cài đặt sẽ tải lại chuyên gia.",
+      "maxRetriesTooltip": "Số lần thử bổ sung sau lần gọi công cụ đầu tiên phát sinh ngoại lệ. Mặc định là 5. Đặt 0 để tắt việc thử lại nhưng vẫn giữ công tắc bật.",
+      "initialDelayTooltip": "Số giây chờ trước lần thử lại đầu tiên. Các khoảng chờ tiếp theo sẽ tăng gấp đôi cho đến độ trễ tối đa. Mặc định là 1 giây.",
+      "maxDelayTooltip": "Thời gian chờ tối đa giữa các lần thử lại công cụ. Mặc định là 60 giây và phải lớn hơn hoặc bằng độ trễ ban đầu."
     },
     "compaction": {
       "enabled": "Tự động nén ngữ cảnh",
@@ -1787,7 +1797,11 @@
       "keepPlaceholder": "0.10",
       "trim": "Giới hạn đầu vào cho bản tóm tắt",
       "trimPlaceholder": "8000",
-      "keepBelowTrigger": "Tỷ lệ giữ lại phải nhỏ hơn ngưỡng kích hoạt"
+      "keepBelowTrigger": "Tỷ lệ giữ lại phải nhỏ hơn ngưỡng kích hoạt",
+      "enabledTooltip": "Khi cuộc trò chuyện gần chạm giới hạn cửa sổ ngữ cảnh, các tin nhắn cũ sẽ được tóm tắt và đưa ra khỏi cửa sổ. Tắt tùy chọn này để dừng tự động nén ngữ cảnh. Lưu cài đặt sẽ tải lại chuyên gia.",
+      "triggerTooltip": "Bắt đầu nén khi mức sử dụng ngữ cảnh đạt tỷ lệ này của cửa sổ. Mặc định là 0,85. Kích thước cửa sổ phụ thuộc vào mô hình và có thể được ghi đè bằng giới hạn độ dài đầu vào.",
+      "keepTooltip": "Tỷ lệ cửa sổ ngữ cảnh được giữ lại sau khi nén. Mặc định là 0,10 và phải nhỏ hơn tỷ lệ kích hoạt.",
+      "trimTooltip": "Số token tối đa của lịch sử bị loại bỏ được gửi tới mô hình tóm tắt. Mặc định là 8000."
     }
   },
   "toolSettings": {
@@ -2793,5 +2807,135 @@
     "model_call_failed": "Không thể gọi mô hình sau nhiều lần thử lại. Hãy đợi một chút rồi thử lại. Nếu lỗi tiếp tục, kiểm tra cài đặt mô hình hoặc chuyển sang mô hình khác.",
     "model_call_failed_detail": "Không thể gọi mô hình: {{detail}}",
     "path_outside_root": "Đường dẫn tệp nằm ngoài thư mục gốc lưu trữ của chuyên gia này nên không thể đọc hoặc ghi. Hãy dùng đường dẫn trong phạm vi cho phép hoặc mở rộng thư mục gốc trong cài đặt chuyên gia (trên Windows, chỉ định ổ đĩa như D:/octop-data)."
+  },
+  "wizard": {
+    "title": "Thiết lập ban đầu",
+    "back": "Quay lại",
+    "sessionExpired": "Phiên trình hướng dẫn đã hết hạn. Vui lòng xác minh lại mật khẩu khởi tạo.",
+    "stepDatabase": "Chọn cơ sở dữ liệu",
+    "stepPassword": "Xác minh mật khẩu trình hướng dẫn",
+    "stepAdmin": "Tạo quản trị viên",
+    "stepModel": "Cấu hình mô hình (không bắt buộc)",
+    "stepFinish": "Hoàn tất",
+    "steps": {
+      "database": "Cơ sở dữ liệu",
+      "password": "Mật khẩu",
+      "admin": "Quản trị viên",
+      "model": "Mô hình",
+      "finish": "Hoàn tất"
+    },
+    "database": {
+      "hint": "Chọn nơi Octop lưu dữ liệu điều khiển: người dùng, tác nhân và kênh. Tệp SQLite mặc định phù hợp với hầu hết các bản cài đặt.",
+      "driver": "Hệ quản trị cơ sở dữ liệu",
+      "sqlite": "SQLite (tệp cục bộ)",
+      "postgresql": "PostgreSQL",
+      "showAdvanced": "Hiển thị tùy chọn nâng cao",
+      "hideAdvanced": "Ẩn tùy chọn nâng cao",
+      "sqlitePathHint": "Tệp cơ sở dữ liệu cục bộ mặc định trong thư mục nhà của Octop.",
+      "postgresqlBetaTitle": "PostgreSQL đang ở bản beta",
+      "postgresqlBetaHint": "Hỗ trợ PostgreSQL hiện đang được thử nghiệm nội bộ và có thể chưa ổn định. Nên dùng SQLite trong môi trường production trừ khi bạn thực sự cần PostgreSQL.",
+      "continueWithPostgresql": "Dùng PostgreSQL và tiếp tục",
+      "sqlitePath": "Đường dẫn SQLite",
+      "sqlitePathRequired": "Cần nhập đường dẫn SQLite",
+      "host": "Máy chủ",
+      "hostRequired": "Cần nhập máy chủ",
+      "port": "Cổng",
+      "name": "Tên cơ sở dữ liệu",
+      "nameRequired": "Cần nhập tên cơ sở dữ liệu",
+      "user": "Người dùng",
+      "userRequired": "Cần nhập người dùng",
+      "password": "Mật khẩu",
+      "test": "Kiểm tra kết nối",
+      "testOk": "Kết nối thành công.",
+      "testOkExisting": "Đã kết nối. Cơ sở dữ liệu này đã có {{count}} người dùng. Khi tiếp tục, bạn sẽ đăng nhập bằng một trong các tài khoản hiện có.",
+      "adoptTitle": "Dùng tài khoản hiện có",
+      "adoptBody": "Cơ sở dữ liệu PostgreSQL này đã có người dùng. Hãy xác nhận để giữ lại các tài khoản đó, bỏ qua bước tạo quản trị viên và chuyển tới trang đăng nhập.",
+      "adoptOk": "Dùng tài khoản hiện có",
+      "adoptCancel": "Quay lại",
+      "testFailed": "Kiểm tra kết nối cơ sở dữ liệu không thành công.",
+      "applyFailed": "Không thể lưu cài đặt cơ sở dữ liệu.",
+      "alreadyBound": "Cơ sở dữ liệu điều khiển đã được liên kết ({{driver}}). Hãy tiếp tục hoặc mở tùy chọn nâng cao để đổi hệ quản trị trước khi tạo quản trị viên.",
+      "continue": "Lưu và tiếp tục"
+    },
+    "password": {
+      "label": "Mật khẩu khởi tạo",
+      "hint": "Trong lần khởi động đầu tiên, Octop sẽ in mật khẩu khởi tạo dùng một lần trong terminal của máy chủ và ghi vào tệp bên dưới.",
+      "whereTitle": "Tìm mật khẩu ở đâu?",
+      "wherePath": "Trên máy chủ, mở {{path}} hoặc kiểm tra biểu ngữ màu vàng xuất hiện khi Octop khởi động.",
+      "whereDefault": "Trên máy chủ, mở ~/.octop/octop-login.txt hoặc kiểm tra biểu ngữ màu vàng khi Octop khởi động.",
+      "missingFile": "Không tìm thấy tệp mật khẩu khởi tạo. Hãy khởi động lại máy chủ khi chưa có người dùng để tạo lại tệp.",
+      "wrong": "Mật khẩu không chính xác.",
+      "rateLimited": "Quá nhiều lần thử. Hãy đợi một phút rồi thử lại.",
+      "verifyButton": "Xác minh và tiếp tục"
+    },
+    "admin": {
+      "username": "Tên người dùng",
+      "usernameRule": "Chỉ dùng chữ cái Latin, chữ số, '_' hoặc '-' (tối đa 64 ký tự).",
+      "displayName": "Tên hiển thị (không bắt buộc)",
+      "email": "Email (không bắt buộc)",
+      "emailInvalid": "Hãy nhập địa chỉ email hợp lệ",
+      "password": "Mật khẩu",
+      "passwordHint": "Ít nhất 8 ký tự, bao gồm chữ cái và chữ số.",
+      "confirm": "Xác nhận mật khẩu",
+      "passwordMismatch": "Mật khẩu không khớp.",
+      "submit": "Tạo quản trị viên và tiếp tục",
+      "submitFailed": "Không thể tạo quản trị viên.",
+      "continue": "Tiếp tục",
+      "alreadyCreated": "Quản trị viên “{{username}}” đã được tạo.",
+      "intro": "Tạo tài khoản quản trị viên đầu tiên.",
+      "introNoPassword": "Đặt tên cho tài khoản trên thiết bị này. Không cần mật khẩu."
+    },
+    "model": {
+      "intro": "Cấu hình một nhà cung cấp mô hình để trợ lý có thể trả lời. Bạn có thể bỏ qua bước này và cấu hình sau.",
+      "skip": "Bỏ qua",
+      "presetTab": "Nhà cung cấp có sẵn",
+      "customTab": "Nhà cung cấp tùy chỉnh",
+      "showMorePresets": "Thêm nhà cung cấp mô hình ({{count}})",
+      "hideMorePresets": "Ẩn bớt",
+      "choosePreset": "Chọn nhà cung cấp có sẵn",
+      "choosePresetHint": "Nhấn vào thẻ để tự điền cài đặt — bạn chỉ cần nhập API key. Các thương hiệu có nhiều trang web sẽ hiển thị bước chọn trang trước.",
+      "siteCount": "{{count}} trang web",
+      "customSetup": "Thiết lập tùy chỉnh",
+      "testButton": "Kiểm tra kết nối",
+      "testSuccess": "Kết nối thành công.",
+      "testFailed": "Kết nối thất bại: {{error}}",
+      "testFirstHint": "Chạy “Kiểm tra kết nối” và đợi kết quả thành công trước khi tiếp tục.",
+      "continue": "Tiếp tục sau khi kiểm tra thành công",
+      "providerName": "Tên nhà cung cấp",
+      "providerNameRequired": "Hãy nhập tên nhà cung cấp",
+      "modelsLabel": "Mô hình được bật",
+      "modelsHint": "Chọn các mô hình cần bật. Bạn cũng có thể nhập ID mô hình tùy chỉnh bên dưới.",
+      "hintReasoning": "Mô hình suy luận dành cho phân tích và lập kế hoạch phức tạp",
+      "hintMultimodal": "Hỗ trợ hình ảnh và các đầu vào đa phương thức khác",
+      "hintContext": "Ngữ cảnh khoảng {{value}}",
+      "hintDefault": "Mô hình trò chuyện đa dụng",
+      "formIncomplete": "Hãy điền các trường bắt buộc trước khi kiểm tra kết nối"
+    },
+    "finish": {
+      "running": "Đang thiết lập workspace…",
+      "loginFailed": "Đăng nhập tự động không thành công. Vui lòng đăng nhập thủ công.",
+      "providerFailed": "Chưa thể lưu nhà cung cấp. Sau khi đăng nhập, hãy mở trang Mô hình để thử lại.",
+      "fallbackToLogin": "Bỏ qua và chuyển tới đăng nhập"
+    }
+  },
+  "adminProviders": {
+    "title": "Nhà cung cấp",
+    "newProvider": "Nhà cung cấp mới",
+    "pageDescription": "Tất cả nhà cung cấp do quản trị viên quản lý và được cung cấp cho mọi tác nhân.",
+    "colName": "Tên",
+    "colKind": "Loại",
+    "colNote": "Ghi chú",
+    "deleteConfirm": "Xóa {{name}}?",
+    "fieldBaseUrl": "URL cơ sở (không bắt buộc)",
+    "fieldApiKey": "API key (không bắt buộc)",
+    "fieldModel": "Mô hình mặc định (không bắt buộc)",
+    "nameRequired": "Cần nhập tên",
+    "notePlaceholder": "ghi chú riêng của bạn",
+    "loadFailed": "Tải không thành công",
+    "created": "Đã tạo nhà cung cấp “{{name}}”",
+    "createFailed": "Không thể tạo nhà cung cấp",
+    "deleted": "Đã xóa",
+    "notePrivateTo": "ghi chú riêng của {{username}}",
+    "notePrivate": "ghi chú riêng"
   }
 }
