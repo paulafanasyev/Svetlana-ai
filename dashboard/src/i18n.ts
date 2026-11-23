@@ -6,6 +6,8 @@ import { resolveInitialLocale, syncDocumentLang, type UiLocale } from "./utils/l
 
 export type { UiLocale } from "./utils/localePrefs";
 
+const SUPPORTED_LOCALES: UiLocale[] = ["ru", "vi", "en", "zh"];
+
 async function loadLocaleBundle(locale: UiLocale) {
   switch (locale) {
     case "ru": return (await import("./locales/ru.json")).default;
@@ -63,12 +65,12 @@ export function initI18n(): Promise<void> {
         },
         lng: initial,
         fallbackLng: "en",
-        supportedLngs: ["ru", "vi", "en", "zh"],
+        supportedLngs: SUPPORTED_LOCALES,
         nonExplicitSupportedLngs: true,
         interpolation: { escapeValue: false },
       });
       syncDocumentLang(initial);
-      const others: UiLocale[] = ["ru", "vi", "en", "zh"].filter((item) => item !== initial);
+      const others = SUPPORTED_LOCALES.filter((item) => item !== initial);
       const prefetch = () => { void Promise.all(others.map(ensureLocaleBundle)); };
       if (typeof requestIdleCallback !== "undefined") requestIdleCallback(prefetch);
       else setTimeout(prefetch, 2000);
