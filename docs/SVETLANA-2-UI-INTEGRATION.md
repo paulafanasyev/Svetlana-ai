@@ -18,19 +18,21 @@ Octop остаётся внутренним движком: agents, tools, MCP, 
   `dashboard/public/svetlana-wordmark.svg`, `dashboard/public/svetlana-mark.svg`.
 - Обновлены брендинг sidebar/mobile header, HTML title/lang/favicon и PWA manifest.
 - Добавлен `SvetlanaCompanion`: аватар и статус TTS вне экрана чата; на странице чата компонент скрывается, чтобы не перекрывать composer.
-- В сообщениях главного assistant без собственной иконки используется master avatar; для активного озвучиваемого сообщения добавляется зелёное свечение.
+- Для основного ассистента в одиночном чате и агентов с именем «Светлана» используется master avatar; явно заданные иконки/аватары имеют приоритет. Отсутствие иконки у стороннего эксперта больше не подменяет его фотографией Светланы. Для активного озвучиваемого сообщения добавляется зелёное свечение.
 - Default UI locale — RU; RU/VI/EN/ZH остаются поддерживаемыми.
 - Ant Design и dayjs переключаются на RU/VI/EN/ZH локали.
-- Browser STT realtime получает корректные locale-коды `ru` и `vi`.
+- Browser STT realtime получает BCP-47 locale-коды `ru-RU` и `vi-VN`.
 - Browser TTS получает выбранную локаль UI; выбор локального голоса предпочитает женские RU/VI голоса, если они доступны на устройстве.
 - Server Edge TTS получает locale-specific `voice_id`: `ru-RU-SvetlanaNeural`, `vi-VN-HoaiMyNeural`, а также EN/ZH fallback IDs. Эти ID соответствуют опубликованному каталогу Microsoft Speech.
+- Исправлена интеграция с закреплённым `octop-harness 1.0.11`: runtime допускает только `en`/`zh`, поэтому UI locale RU/VI не меняется, а при создании Harness config передаётся допустимый language fallback. Оба пути создания config используют один адаптер; добавлены unit tests для RU/VI/EN/ZH и русского default.
+- Выбор Edge TTS voice вынесен в отдельный helper; добавлены unit tests для четырёх локалей. Добавлены tests для выбора master avatar (основной ассистент/имя Светлана против сторонних агентов) и для placeholder parity RU/VI.
 - Переведены общие элементы, навигация, настройки голоса, sign-in, onboarding/invite, PWA, upload/errors и основные chat controls на RU/VI.
 - Добавлен dashboard CI workflow: lint, unit tests и production build; production build теперь запускается даже при падении unit tests, чтобы результат сборки был виден отдельно.
 - Исправлено форматирование backend locale helpers, выявленное Ruff.
 
 ## Ограничения — не считать завершённым
 
-- По текущему подсчёту leaf-ключей EN содержит 7422 строки; RU — 1130 строк, из них совпадают с EN 1128 (15.20% покрытия); VI — 1130 строк, из них совпадают с EN 1128 (15.20%). В RU/VI переведены оболочка и навигация, приветствие чата и быстрые команды, инструменты и подсказки упоминаний, настройки пользователя и учётной записи, безопасность/MFA, персонализация экспертов, заголовки основных страниц, файловый менеджер рабочего пространства и каталог пакетов навыков (создание, импорт, подключение к экспертам, общий доступ и политика копирования). Разделы models, memory, connectors, channels и advanced settings пока в основном используют EN fallback. Полная RU/VI локализация НЕ VERIFIED.
+- По текущему подсчёту leaf-ключей EN содержит 7422 строки; RU содержит 1298 соответствующих ключей (17,49% покрытия), VI — также 1298 (17,49%). Переведены оболочка и навигация, голосовые настройки и статусы, sign-in, onboarding/invite, PWA/upload/errors, основные chat controls и состояния обслуживания памяти, мастер первого запуска, а также часть экранов models, memory, connectors и channels. У всех RU/VI строк, совпадающих с EN ключом, проверены interpolation placeholders; добавлен Vitest для повторной проверки. Разделы skills, experts, cron jobs, advanced settings и значительная часть моделей/памяти/подключений/каналов ещё используют EN fallback. Полная RU/VI локализация НЕ VERIFIED.
 - ZH словарь сохраняет полное покрытие EN; EN исходник не менялся.
 - Microsoft Neural voice — штатный синтезированный голос провайдера, не клонированная запись/персональная voice model Светланы.
 - Реальное воспроизведение TTS на Android/устройстве, STT на конкретном микрофоне и UI runtime ещё не подтверждены.
@@ -40,8 +42,9 @@ Octop остаётся внутренним движком: agents, tools, MCP, 
 
 ## Проверки
 
-- GitHub PR workflow: общая CI и отдельный dashboard CI (lint → Vitest → TypeScript/Vite build).
-- Результаты каждого workflow фиксировать по конкретному head SHA. Предыдущий lint failure был связан с форматированием двух locale helper файлов; они отформатированы, но PASS подтверждать только после успешного свежего CI.
+- GitHub PR workflow: общая CI и отдельный dashboard CI (ESLint → Vitest → TypeScript/Vite production build). В Python CI отдельно проверяются Linux и Windows.
+- Добавлены regression tests для Harness locale adapter, Edge TTS voice mapping, avatar selection и RU/VI interpolation placeholders.
+- Результаты каждого workflow фиксировать по конкретному head SHA. Прошлые запуски могли отменяться после нового коммита; PASS подтверждать только по свежему run текущего head SHA.
 - Не считать PR draft или mergeable статусом доказательством runtime готовности.
 
 ## Следующие этапы
