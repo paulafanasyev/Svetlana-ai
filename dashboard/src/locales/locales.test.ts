@@ -34,6 +34,9 @@ const bundles = [
   ["vi", collectStrings(vi)],
 ] as const;
 
+/** These shared labels are intentionally consumed by components but are not in en.json. */
+const intentionalLocaleOnlyKeys = new Set(["common.search", "common.settings"]);
+
 describe("localized translation bundles", () => {
   it.each(bundles)(
     "%s preserves interpolation placeholders from English",
@@ -56,6 +59,13 @@ describe("localized translation bundles", () => {
       expect(mismatches).toEqual([]);
     },
   );
+
+  it.each(bundles)("%s contains no unknown locale-only keys", (locale, translations) => {
+    const unexpected = [...translations.keys()].filter(
+      (key) => !source.has(key) && !intentionalLocaleOnlyKeys.has(key),
+    );
+    expect(unexpected, `${locale} contains unknown keys`).toEqual([]);
+  });
 
   it.each(bundles)("%s contains the core Svetlana interface labels", (locale, translations) => {
     for (const key of [
