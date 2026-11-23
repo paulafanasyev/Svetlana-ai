@@ -1,9 +1,10 @@
 import { readFileSync } from "node:fs";
 import { resolve } from "node:path";
 import { afterEach, beforeEach, describe, expect, it } from "vitest";
-import { THEME_STORAGE_KEY } from "./themePalettes";
+import { LEGACY_PALETTE_STORAGE_KEY, THEME_STORAGE_KEY } from "./themePalettes";
 
 const INDEX_HTML = readFileSync(resolve(__dirname, "../../index.html"), "utf8");
+const THEME_CSS = readFileSync(resolve(__dirname, "theme-vars.css"), "utf8");
 
 function bootThemeScript(): string {
   const match = INDEX_HTML.match(
@@ -33,7 +34,9 @@ describe("index.html boot theme", () => {
 
   beforeEach(() => {
     localStorage.removeItem(THEME_STORAGE_KEY);
+    localStorage.removeItem(LEGACY_PALETTE_STORAGE_KEY);
     document.documentElement.removeAttribute("data-theme");
+    document.documentElement.removeAttribute("data-palette");
     window.history.replaceState(null, "", "/");
     stubMatchMedia(true);
   });
@@ -41,7 +44,9 @@ describe("index.html boot theme", () => {
   afterEach(() => {
     window.matchMedia = originalMatchMedia;
     localStorage.removeItem(THEME_STORAGE_KEY);
+    localStorage.removeItem(LEGACY_PALETTE_STORAGE_KEY);
     document.documentElement.removeAttribute("data-theme");
+    document.documentElement.removeAttribute("data-palette");
     window.history.replaceState(null, "", "/");
   });
 
@@ -62,6 +67,34 @@ describe("index.html boot theme", () => {
   it("shows the shared arc beside the status line", () => {
     expect(INDEX_HTML).toContain('class="octop-boot-spinner"');
     expect(INDEX_HTML).toContain("@keyframes octop-boot-spin");
+  });
+
+  it("sets the Svetlana Indigo palette before the first render", () => {
+    eval(bootThemeScript());
+    expect(document.documentElement.getAttribute("data-palette")).toBe("indigo");
+  });
+
+  it("preserves a saved user palette before the first render", () => {
+    localStorage.setItem(
+      THEME_STORAGE_KEY,
+      JSON.stringify({ preference: "dark", palette: "rose" }),
+    );
+    eval(bootThemeScript());
+    expect(document.documentElement.getAttribute("data-palette")).toBe("rose");
+  });
+
+  it("migrates a saved legacy palette before the first render", () => {
+    localStorage.setItem(LEGACY_PALETTE_STORAGE_KEY, "tech");
+    eval(bootThemeScript());
+    expect(document.documentElement.getAttribute("data-palette")).toBe("tech");
+  });
+
+  it("uses the Svetlana navy neutral surfaces in dark mode", () => {
+    expect(THEME_CSS).toContain('--fn-bg-layout: #0a0e1a;');
+    expect(THEME_CSS).toContain('--fn-bg-primary: #111827;');
+    expect(THEME_CSS).toContain('--fn-bg-tertiary: #1e293b;');
+    expect(THEME_CSS).toContain('--fn-text-primary: #e2e8f0;');
+    expect(THEME_CSS).toContain('--fn-bg-glass: rgba(17, 24, 39, 0.8);');
   });
 
   it("keeps a stored light preference over OS dark", () => {
