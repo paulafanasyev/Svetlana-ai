@@ -84,8 +84,13 @@
   "layout": {
     "collapsePanel": "Thu gọn bảng",
     "expandPanel": "Mở rộng bảng",
-    "collapseNav": "Thu gọn điều hướng",
-    "expandNav": "Mở rộng điều hướng"
+    "collapseNav": "Thu gọn thanh điều hướng",
+    "expandNav": "Mở rộng thanh điều hướng",
+    "windowControls": "Điều khiển cửa sổ",
+    "windowMinimize": "Thu nhỏ",
+    "windowMaximize": "Phóng to",
+    "windowRestore": "Khôi phục kích thước",
+    "windowClose": "Đóng"
   },
   "svetlana": {
     "name": "Svetlana 2.0",
@@ -818,5 +823,204 @@
     "changePasswordButton": "Cập nhật mật khẩu",
     "disableProtectionTitle": "Tắt bảo vệ bằng mật khẩu",
     "disableProtectionDesc": "Nhập mật khẩu hiện tại để xác nhận tắt bảo vệ. Sau đó, bất kỳ ai cũng có thể truy cập bảng điều khiển mà không cần mật khẩu."
+  },
+  "security": {
+    "intro": "Cấu hình chính sách bảo mật khi chạy cho các tác nhân. Các tác nhân đang hoạt động sẽ tự tải lại sau khi lưu.",
+    "loadError": "Không thể tải cài đặt bảo mật",
+    "saved": "Đã lưu cài đặt bảo mật",
+    "saveFailed": "Lưu không thành công",
+    "saveAll": "Lưu tất cả cài đặt bảo mật",
+    "saveAllHint": "Lưu tất cả các tab bảo mật: phê duyệt công cụ, hệ thống tệp, dữ liệu cá nhân, kiểm soát lệnh và quét kỹ năng. Các tác nhân đang chạy sẽ tự tải lại.",
+    "tabHitl": "Phê duyệt công cụ",
+    "tabFilesystem": "Hệ thống tệp",
+    "tabPii": "Ẩn dữ liệu cá nhân",
+    "tabToolGuard": "Kiểm soát lệnh",
+    "tabSkillScan": "Quét kỹ năng",
+    "tabAudit": "Nhật ký kiểm toán",
+    "hitlDesc": "Tạm dừng các công cụ được chọn cho đến khi có người phê duyệt hoặc từ chối trong trò chuyện.",
+    "hitlEnable": "Yêu cầu người dùng phê duyệt công cụ",
+    "hitlTools": "Công cụ cần phê duyệt",
+    "hitlHint": "Các công cụ được liệt kê sẽ tạm dừng trước khi thực thi cho đến khi được phê duyệt hoặc từ chối trong trò chuyện.",
+    "hitlEnableWarning": "Khi bật phê duyệt công cụ, tác nhân sẽ tạm dừng mỗi khi chuẩn bị chạy một công cụ trong danh sách và chờ xác nhận thủ công. Điều này có thể làm chậm quy trình: trong ứng dụng nhắn tin, bạn cần gửi /approve hoặc /reject; trong bảng điều khiển sẽ xuất hiện thẻ phê duyệt. Hãy chắc chắn rằng bạn chấp nhận các bước bổ sung này.",
+    "hitlToolsPickerHint": "Chọn các công cụ cần người dùng phê duyệt trước khi thực thi. Mã công cụ được hiển thị bên dưới mỗi nhãn.",
+    "hitlToolsSelectDefaults": "Mặc định khuyến nghị",
+    "hitlToolsSelectAll": "Chọn tất cả",
+    "hitlToolsDeselectAll": "Bỏ chọn tất cả",
+    "hitlToolsEmpty": "Không có công cụ nào cần phê duyệt.",
+    "fsDesc": "Chặn công cụ hệ thống tệp đọc hoặc ghi vào các đường dẫn nhạy cảm.",
+    "fsEnable": "Bật quy tắc đường dẫn hệ thống tệp",
+    "fsPaths": "Đường dẫn nhạy cảm (mỗi dòng một đường dẫn, hỗ trợ glob)",
+    "fsHint": "Các đường dẫn khớp sẽ bị chặn đối với công cụ đọc/ghi tệp.",
+    "piiDesc": "Phát hiện và ẩn khóa API trong lời nhắc, phản hồi và kết quả công cụ.",
+    "piiEnable": "Ẩn khóa API trong lời nhắc và phản hồi",
+    "piiStrategy": "Cách xử lý",
+    "piiMask": "Che",
+    "piiRedact": "Xóa",
+    "piiBlock": "Chặn",
+    "piiHash": "Băm",
+    "skillScanDesc": "Quét kỹ năng để phát hiện mẫu nguy hiểm trước khi cài đặt.",
+    "skillScanMode": "Chế độ quét",
+    "skillScanOff": "Tắt",
+    "skillScanWarn": "Cảnh báo",
+    "skillScanBlock": "Chặn",
+    "skillScanHint": "Quét tĩnh trước khi cài đặt kỹ năng (sẽ được tích hợp ở giai đoạn tiếp theo).",
+    "toolGuardDesc": "Kiểm tra đối số lệnh shell theo bộ quy tắc trước khi thực thi.",
+    "toolGuardEnable": "Quét tham số lệnh shell",
+    "toolGuardMode": "Hành động khi khớp quy tắc",
+    "toolGuardBlock": "Chặn (HIGH/CRITICAL)",
+    "toolGuardRequireApproval": "Yêu cầu phê duyệt (bao gồm MEDIUM)",
+    "toolGuardWarn": "Chỉ ghi nhật ký cảnh báo",
+    "toolGuardHint": "Dùng biểu thức chính quy để quét đối số bash/execute trước khi chạy. Chặn sẽ dừng công cụ; yêu cầu phê duyệt sẽ tạm dừng để người dùng kiểm tra trên Dashboard hoặc ứng dụng nhắn tin (/approve, /reject).",
+    "rulesSection": "Danh mục quy tắc",
+    "toolGuardRulesTitle": "Quy tắc bảo vệ ({{count}})",
+    "toolGuardRulesMaintain": "Tệp quy tắc: {{path}}. Chỉnh sửa YAML bên dưới rồi lưu, hoặc sửa tệp trên đĩa và khởi động lại. Các tác nhân đang chạy sẽ tự tải lại sau khi lưu.",
+    "toolGuardYamlEditor": "Trình chỉnh sửa YAML quy tắc",
+    "toolGuardSaveRules": "Lưu quy tắc",
+    "toolGuardResetRules": "Đặt lại mặc định",
+    "toolGuardResetConfirm": "Khôi phục các quy tắc mặc định được cung cấp? Mọi chỉnh sửa của bạn sẽ bị mất.",
+    "toolGuardRulesSaved": "Đã lưu {{count}} quy tắc",
+    "toolGuardRulesSaveFailed": "Lưu không thành công — hãy kiểm tra cú pháp YAML",
+    "toolGuardRulesReset": "Đã khôi phục quy tắc mặc định",
+    "toolGuardRulesResetFailed": "Không thể đặt lại quy tắc",
+    "toolGuardLoadError": "Không thể tải quy tắc kiểm soát lệnh",
+    "toolGuardColSeverity": "Mức độ nghiêm trọng",
+    "toolGuardColDescription": "Mô tả",
+    "toolGuardColTools": "Công cụ",
+    "toolGuardColPatterns": "Mẫu (ví dụ)",
+    "toolGuardRemediation": "Cách khắc phục",
+    "toolGuardAllPatterns": "Tất cả mẫu ({{count}})",
+    "auditDesc": "Xem lại hoạt động hệ thống và các sự kiện liên quan đến bảo mật.",
+    "runtimeTitle": "Ghi chú khi chạy",
+    "runtimeHint": "Các tác nhân đang chạy sẽ tự tải lại sau khi lưu. Phê duyệt công cụ sử dụng HITL; kiểm soát lệnh chặn tham số shell nguy hiểm trước khi công cụ chạy."
+  },
+  "pageShell": {
+    "experts": {
+      "title": "Chuyên gia",
+      "subtitle": "Tạo và quản lý chuyên gia AI hoặc khởi chạy từ mẫu có sẵn"
+    },
+    "tasks": {
+      "title": "Tự động hóa",
+      "subtitle": "Tạo tác vụ theo lịch cho chuyên gia hoặc chạy ngay lập tức"
+    },
+    "connectors": {
+      "title": "Kết nối",
+      "subtitle": "Kết nối tài liệu, lưu trữ đám mây và email rồi sử dụng trong trò chuyện khi cần"
+    },
+    "acp": {
+      "title": "Phối hợp tác nhân",
+      "subtitle": "Cấu hình tác nhân bên ngoài và bật khả năng phối hợp với chuyên gia này"
+    },
+    "skills": {
+      "title": "Kỹ năng",
+      "subtitle": "Quản lý kỹ năng đã cài đặt hoặc cài kỹ năng mới từ chợ kỹ năng"
+    },
+    "tools": {
+      "title": "Công cụ",
+      "subtitle": "Bật hoặc tắt công cụ tích hợp và plugin, đồng thời kiểm soát khả năng của chuyên gia"
+    },
+    "tokenUsage": {
+      "title": "Mức sử dụng token",
+      "subtitle": "Xem mức sử dụng token của tài khoản và phân tích theo kênh và cuộc trò chuyện"
+    },
+    "channels": {
+      "title": "Kênh",
+      "subtitle": "Quản lý kênh nhắn tin và tích hợp webhook để chuyên gia trả lời trong các cuộc trò chuyện bên ngoài"
+    },
+    "mbti": {
+      "title": "Tính cách MBTI",
+      "subtitle": "Chọn hoặc làm bài kiểm tra MBTI cho chuyên gia và thiết lập phong cách giao tiếp"
+    },
+    "subagents": {
+      "title": "Tác nhân phụ",
+      "subtitle": "Quản lý tác nhân phụ của chuyên gia, cài đặt hoặc chỉnh sửa kỹ năng của họ"
+    },
+    "memory": {
+      "title": "Bộ nhớ",
+      "subtitle": "Xem và sắp xếp ký ức đã lưu của chuyên gia, bao gồm cả bản nháp đang chờ"
+    },
+    "workspace": {
+      "title": "Không gian làm việc",
+      "subtitle": "Duyệt, xem trước và quản lý tệp trong không gian của chuyên gia, chỉnh sửa và tải xuống"
+    },
+    "models": {
+      "title": "Quản lý mô hình",
+      "subtitle": "Cấu hình mô hình cho trò chuyện, embedding, tạo nội dung, giọng nói, tìm kiếm và quyết định"
+    },
+    "voice": {
+      "title": "Dịch vụ giọng nói",
+      "subtitle": "Cấu hình nhận dạng giọng nói và chuyển văn bản thành giọng nói, chọn mô hình đang hoạt động"
+    },
+    "adminUsers": {
+      "title": "Quản lý người dùng",
+      "subtitle": "Quản lý tài khoản cục bộ và nhà cung cấp đăng nhập (Generic OIDC, Feishu, WeCom, DingTalk)"
+    },
+    "adminSso": {
+      "title": "Generic OIDC",
+      "subtitle": "Cấu hình nhà cung cấp OpenID Connect cho đăng nhập một lần"
+    },
+    "adminStorage": {
+      "title": "Lưu trữ",
+      "subtitle": "Cấu hình nền tảng lưu trữ cho chuyên gia như lưu trữ đối tượng và môi trường sandbox"
+    },
+    "adminAudit": {
+      "title": "Nhật ký kiểm toán",
+      "subtitle": "Xem hoạt động hệ thống và bản ghi truy cập API để khắc phục sự cố và kiểm toán"
+    },
+    "adminAgents": {
+      "title": "Tác nhân",
+      "subtitle": "Xem và quản lý tác nhân của tất cả người dùng, tìm kiếm và thao tác liên tài khoản"
+    },
+    "adminAdvanced": {
+      "title": "Cài đặt ứng dụng",
+      "subtitle": "Quản lý biến môi trường, bản sao lưu, HTTPS và cập nhật"
+    },
+    "bridge": {
+      "title": "Phối hợp đám mây",
+      "subtitle": "Kết nối một phiên bản Octop khác, duyệt chuyên gia của phiên bản đó và trò chuyện liên phiên bản"
+    },
+    "security": {
+      "title": "Bảo mật",
+      "subtitle": "Cấu hình phê duyệt công cụ, kiểm soát lệnh, quyền truy cập tệp và bảo vệ dữ liệu cá nhân"
+    },
+    "adminPlugins": {
+      "title": "Quản lý plugin",
+      "subtitle": "Cài đặt và quản lý plugin máy chủ, sau đó bật cho từng chuyên gia trong mục Cá nhân hóa"
+    },
+    "adminUpdates": {
+      "title": "Cập nhật",
+      "subtitle": "Kiểm tra phiên bản hiện tại và nâng cấp trực tiếp hoặc xem hướng dẫn cài đặt"
+    },
+    "browser": {
+      "title": "Trình duyệt AI+",
+      "subtitle": "Xem và điều khiển trình duyệt headless từ xa, tiếp quản phiên web của chuyên gia"
+    },
+    "desktop": {
+      "title": "Máy tính từ xa",
+      "subtitle": "Xem và điều khiển màn hình máy chủ Octop, hoàn thành tác vụ từ xa"
+    },
+    "terminal": {
+      "title": "Terminal AI+",
+      "subtitle": "Chạy terminal shell tương tác trong trình duyệt và theo dõi lệnh của chuyên gia"
+    },
+    "mobile": {
+      "title": "Điện thoại từ xa",
+      "subtitle": "Xem và điều khiển điện thoại hoặc trình giả lập đã kết nối"
+    },
+    "adminSharedModels": {
+      "title": "Mô hình dùng chung",
+      "subtitle": "Quản lý bộ mô hình dùng chung cho tất cả người dùng để mọi chuyên gia sử dụng cùng cấu hình"
+    }
+  },
+  "sharedResource": {
+    "shared": "Được chia sẻ",
+    "from": "Từ {{name}}",
+    "someone": "người khác"
+  },
+  "avatarPicker": {
+    "presets": {
+      "skill": {
+        "package": "Gói"
+      }
+    }
   }
 }
