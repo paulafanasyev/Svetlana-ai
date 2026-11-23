@@ -18,6 +18,8 @@ Octop остаётся внутренним движком: agents, tools, MCP, 
   `dashboard/public/svetlana-wordmark.svg`, `dashboard/public/svetlana-mark.svg`.
 - Обновлены брендинг sidebar/mobile header, HTML title/lang/favicon и PWA manifest.
 - Палитра по умолчанию переключена на фирменный Indigo `#6366F1` из оригинальной `Svetlana-2.0`; пользовательский выбор light/dark и ранее сохранённые палитры не перезаписываются. Тёмный режим не форсируется.
+- Тёмные поверхности приведены к оригинальным navy-токенам: фон `#0A0E1A`, карточки `#111827`, границы `#1E293B`, текст `#E2E8F0`, стеклянные панели `rgba(17, 24, 39, 0.8)`. Светлая тема остаётся доступной и не меняется.
+- Первый экран до React задаёт `data-palette` из сохранённой настройки; legacy palette key мигрирует без потери выбора. PWA manifest теперь `lang: ru`, использует фон `#0A0E1A` и brand theme color `#6366F1`; meta theme-color переключается по light/dark.
 - Добавлен `SvetlanaCompanion`: аватар и статус TTS вне экрана чата; на странице чата компонент скрывается, чтобы не перекрывать composer.
 - Для основного ассистента в одиночном чате и агентов с именем «Светлана» используется master avatar; явно заданные иконки/аватары имеют приоритет. Отсутствие иконки у стороннего эксперта больше не подменяет его фотографией Светланы. Для активного озвучиваемого сообщения добавляется зелёное свечение.
 - Default UI locale — RU; RU/VI/EN/ZH остаются поддерживаемыми.
@@ -45,7 +47,7 @@ Octop остаётся внутренним движком: agents, tools, MCP, 
 ## Проверки
 
 - GitHub PR workflow: общая CI и отдельный dashboard CI (ESLint → Vitest → TypeScript/Vite production build). В Python CI отдельно проверяются Linux и Windows.
-- Добавлены regression tests для Harness locale adapter, Edge TTS voice mapping, avatar selection и RU/VI interpolation placeholders.
+- Добавлены regression tests для Harness locale adapter, Edge TTS voice mapping, avatar selection и RU/VI interpolation placeholders. Тесты темы проверяют first-paint palette, сохранение пользовательского и legacy palette, а также navy tokens.
 - Результаты каждого workflow фиксировать по конкретному head SHA. Прошлые запуски могли отменяться после нового коммита; PASS подтверждать только по свежему run текущего head SHA.
 - Не считать PR draft или mergeable статусом доказательством runtime готовности.
 
