@@ -1,6 +1,6 @@
 import { useLocation, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import { useVoiceOutputContext } from "../context/VoiceOutputContext";
+import { useOptionalVoiceOutputContext } from "../context/VoiceOutputContext";
 import { publicUrl } from "../utils/publicUrl";
 import styles from "./SvetlanaCompanion.module.less";
 
@@ -9,7 +9,8 @@ export default function SvetlanaCompanion() {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const location = useLocation();
-  const { speakingId } = useVoiceOutputContext();
+  const voiceOutput = useOptionalVoiceOutputContext();
+  const speakingId = voiceOutput?.speakingId;
 
   if (location.pathname === "/login" || location.pathname === "/setup" || location.pathname === "/invite" || location.pathname === "/chat" || location.pathname.startsWith("/chat/")) return null;
 

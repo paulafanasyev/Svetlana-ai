@@ -18,8 +18,12 @@ export function VoiceOutputProvider({ children }: { children: ReactNode }) {
   );
 }
 
+export function useOptionalVoiceOutputContext(): VoiceOutputValue | null {
+  return useContext(VoiceOutputContext);
+}
+
 export function useVoiceOutputContext(): VoiceOutputValue {
-  const ctx = useContext(VoiceOutputContext);
+  const ctx = useOptionalVoiceOutputContext();
   if (!ctx) {
     throw new Error(
       "useVoiceOutputContext must be used within VoiceOutputProvider",
