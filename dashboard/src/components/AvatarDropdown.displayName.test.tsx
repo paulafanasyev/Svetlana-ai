@@ -2,9 +2,13 @@ import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { describe, expect, it, vi } from "vitest";
 
+const { translate } = vi.hoisted(() => ({
+  translate: (key: string) => key,
+}));
+
 vi.mock("react-i18next", () => ({
   useTranslation: () => ({
-    t: (key: string) => key,
+    t: translate,
     i18n: { language: "zh" },
   }),
 }));
