@@ -9,9 +9,10 @@ vi.mock("react-i18next", () => ({
   }),
 }));
 
-vi.mock("react-router-dom", () => ({
-  useNavigate: () => vi.fn(),
-}));
+vi.mock("react-router-dom", async (importOriginal) => {
+  const actual = await importOriginal<typeof import("react-router-dom")>();
+  return { ...actual, useNavigate: () => vi.fn() };
+});
 
 vi.mock("../hooks/useUserRole", () => ({
   useUserRole: () => "user",
