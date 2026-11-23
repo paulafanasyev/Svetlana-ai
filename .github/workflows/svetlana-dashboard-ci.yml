@@ -27,6 +27,7 @@ jobs:
           cache-dependency-path: dashboard/package-lock.json
 
       - name: Install dashboard dependencies
+        id: install
         run: npm ci
         working-directory: dashboard
 
@@ -39,5 +40,6 @@ jobs:
         working-directory: dashboard
 
       - name: Build dashboard
+        if: ${{ always() && steps.install.outcome == 'success' }}
         run: npm run build
         working-directory: dashboard
