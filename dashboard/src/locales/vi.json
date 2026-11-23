@@ -1022,5 +1022,75 @@
         "package": "Gói"
       }
     }
+  },
+  "personalization": {
+    "title": "Cá nhân hóa",
+    "description": "Cấu hình kỹ năng, công cụ, plugin, tác nhân phụ, kênh, tính cách và bộ nhớ của chuyên gia này.",
+    "tabs": {
+      "skills": "Kỹ năng",
+      "tools": "Công cụ",
+      "plugins": "Plugin",
+      "subagents": "Tác nhân phụ",
+      "channels": "Kênh",
+      "mbti": "MBTI",
+      "memory": "Bộ nhớ"
+    },
+    "cards": {
+      "identity": "Danh tính",
+      "identityDesc": "Tác nhân là ai — tên, hình tượng, phong cách, biểu tượng cảm xúc và ảnh đại diện. Điền thông tin để tạo diện mạo và bản sắc riêng cho tác nhân.",
+      "soul": "Cốt cách",
+      "soulDesc": "Xác định các nguyên tắc hành vi cốt lõi, phong cách giao tiếp và ranh giới tính cách của tác nhân.",
+      "profile": "Hồ sơ người dùng",
+      "profileDesc": "Những gì tác nhân biết về bạn — tên, sở thích, múi giờ và thông tin cá nhân.",
+      "agents": "Lời nhắc hệ thống",
+      "agentsDesc": "Hướng dẫn hành vi của tác nhân — chiến lược bộ nhớ, quy tắc bảo mật và quy trình vận hành.",
+      "tools": "Cấu hình công cụ",
+      "toolsDesc": "Công cụ và kỹ năng khả dụng cho tác nhân — xác định phạm vi năng lực, quyền gọi và giới hạn sử dụng.",
+      "bootstrap": "Khởi tạo",
+      "bootstrapDesc": "Quy trình tự nhận thức khi khởi chạy lần đầu, giúp tác nhân xác lập danh tính.",
+      "heartbeat": "Tác vụ định kỳ",
+      "heartbeatDesc": "Danh sách tự kiểm tra định kỳ — kiểm tra email, nhắc lịch và các hành vi lặp lại."
+    },
+    "loadFailed": "Không thể tải cấu hình",
+    "saveSuccess": "Đã lưu cấu hình thành công",
+    "saveFailed": "Không thể lưu cấu hình",
+    "clickToEdit": "Nhấn vào thẻ để cấu hình",
+    "clickToEditContent": "Nhấn vào đây để chuyển sang chế độ chỉnh sửa",
+    "mbti": {
+      "sceneTitle": "🧬 Phòng thí nghiệm tính cách MBTI",
+      "sceneDesc": "Tạo cá tính riêng cho tác nhân — chọn một kiểu tính cách MBTI hoặc làm bài kiểm tra 3 phút. Kết quả định hình cách tác nhân nói chuyện, suy nghĩ và thể hiện cảm xúc.",
+      "configure": "Vào phòng thí nghiệm",
+      "title": "Tính cách MBTI",
+      "subtitle": "Chọn kiểu MBTI hoặc làm bài kiểm tra 3 phút để khám phá tính cách độc đáo!",
+      "takeTest": "Làm bài kiểm tra",
+      "listSummary": "Có {{total}} kiểu tính cách, đã chọn「{{selected}}」",
+      "listSummaryUnset": "Có {{total}} kiểu tính cách, chưa chọn kiểu nào",
+      "dimensions": "Các chiều tính cách",
+      "behavior": "Hồ sơ hành vi",
+      "applyType": "Chọn kiểu này!",
+      "applying": "Đang tạo cá tính…",
+      "applySuccess": "Đã áp dụng kiểu tính cách {{code}}! Tác nhân giờ đã có cá tính riêng.",
+      "applyFailed": "Không thể áp dụng tính cách, hãy thử lại",
+      "applyResult": "Dùng kiểu tính cách này",
+      "loadFailed": "Không thể tải hồ sơ tính cách",
+      "testTitle": "🧠 Bài kiểm tra tính cách",
+      "testIntro": "Chỉ có 28 câu hỏi lựa chọn nhanh giữa hai phương án — mất khoảng 3 phút. Đừng suy nghĩ quá nhiều, hãy chọn theo trực giác!",
+      "disclaimer": "Đây là bài trắc nghiệm vui để giải trí, không có giá trị chẩn đoán lâm sàng hoặc tâm lý.",
+      "startTest": "Bắt đầu kiểm tra →",
+      "prev": "← Trước",
+      "next": "Tiếp theo →",
+      "viewResult": "🎉 Xem kết quả",
+      "submit": "Gửi",
+      "submitting": "Đang phân tích tính cách…",
+      "submitFailed": "Gửi câu trả lời không thành công, hãy thử lại",
+      "catalogTitle": "Danh mục tính cách MBTI",
+      "currentType": "Tính cách hiện tại",
+      "group": {
+        "analysts": "🔬 Nhà phân tích — Logic & chiến lược",
+        "diplomats": "🕊️ Nhà ngoại giao — Đồng cảm & tầm nhìn",
+        "sentinels": "🛡️ Người bảo vệ — Trật tự & trách nhiệm",
+        "explorers": "🧭 Nhà thám hiểm — Tự do & hành động"
+      }
+    }
   }
 }
