@@ -12,15 +12,8 @@ import { speakBrowserText, stopBrowserSpeech } from "../utils/browserSpeech";
 import { isMobileUserAgent } from "../utils/mobileDevice";
 import { WavStreamPlayer } from "../utils/wavStreamPlayer";
 import { speechLocaleFromUi } from "../utils/localePrefs";
+import { edgeVoiceForLocale } from "../utils/edgeVoice";
 import { message as antMessage } from "@/utils/antdMessage";
-
-function edgeVoiceForLocale(locale: string): string {
-  const normalized = locale.toLowerCase();
-  if (normalized.startsWith("ru")) return "ru-RU-SvetlanaNeural";
-  if (normalized.startsWith("vi")) return "vi-VN-HoaiMyNeural";
-  if (normalized.startsWith("zh")) return "zh-CN-XiaoxiaoNeural";
-  return "en-US-JennyNeural";
-}
 
 export function useVoiceOutput() {
   const { t, i18n } = useTranslation();
