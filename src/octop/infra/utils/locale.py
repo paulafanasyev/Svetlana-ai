@@ -22,6 +22,11 @@ def normalize_locale(raw: str | None) -> Locale:
     return "en"
 
 
+def to_harness_locale(raw: str | None) -> Literal["en", "zh"]:
+    """Map application locales to the languages supported by octop-harness."""
+    return "zh" if normalize_locale(raw) == "zh" else "en"
+
+
 def resolve_locale(
     *,
     user_locale: str | None = None,
