@@ -3318,4 +3318,3 @@ def test_build_harness_config_uses_supported_language_for_russian_default(
 ) -> None:
     cfg = manager._build_harness_config(_row(agent_id="AGT001"))
     assert cfg.language == "en"
-
