@@ -20,6 +20,7 @@ export function normalizeUiLocale(raw: string | null | undefined): UiLocale {
   if (value.startsWith("ru")) return "ru";
   if (value.startsWith("vi")) return "vi";
   if (value.startsWith("zh")) return "zh";
+  if (value.startsWith("en")) return "en";
   return "ru";
 }
 
