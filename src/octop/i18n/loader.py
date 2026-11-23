@@ -25,11 +25,7 @@ def _resolve_node(table: dict[str, Any], key: str) -> str | None:
 def _load_all() -> dict[locale_utils.Locale, dict[str, Any]]:
     out: dict[locale_utils.Locale, dict[str, Any]] = {}
     for loc in locale_utils.SUPPORTED_LOCALES:
-        raw = (
-            resources.files("octop.i18n")
-            .joinpath(f"{loc}.json")
-            .read_text(encoding="utf-8")
-        )
+        raw = resources.files("octop.i18n").joinpath(f"{loc}.json").read_text(encoding="utf-8")
         out[loc] = json.loads(raw)
     return out
 
