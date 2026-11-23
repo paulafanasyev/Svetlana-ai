@@ -25,12 +25,12 @@ Octop остаётся внутренним движком: agents, tools, MCP, 
 - Browser TTS получает выбранную локаль UI; выбор локального голоса предпочитает женские RU/VI голоса, если они доступны на устройстве.
 - Server Edge TTS получает locale-specific `voice_id`: `ru-RU-SvetlanaNeural`, `vi-VN-HoaiMyNeural`, а также EN/ZH fallback IDs. Эти ID соответствуют опубликованному каталогу Microsoft Speech.
 - Переведены общие элементы, навигация, настройки голоса, sign-in, onboarding/invite, PWA, upload/errors и основные chat controls на RU/VI.
-- Добавлен dashboard CI workflow: lint, unit tests и production build.
+- Добавлен dashboard CI workflow: lint, unit tests и production build; production build теперь запускается даже при падении unit tests, чтобы результат сборки был виден отдельно.
 - Исправлено форматирование backend locale helpers, выявленное Ruff.
 
 ## Ограничения — не считать завершённым
 
-- RU/VI dictionaries пока содержат около 421 ключа каждый при 7421 ключе EN (примерно 5.7% parity). Много расширенных экранов Octop ещё используют EN fallback. Полная RU/VI локализация НЕ VERIFIED.
+- По текущему подсчёту leaf-ключей EN содержит 7422 строки; RU — 631 строку, из них совпадают с EN 629 (8.47% покрытия); VI — 512 строк, из них совпадают с EN 510 (6.87%). В RU дополнительно переведены приветственный экран чата, названия инструментов и подсказки упоминаний. Большинство расширенных экранов Octop ещё используют EN fallback. Полная RU/VI локализация НЕ VERIFIED.
 - ZH словарь сохраняет полное покрытие EN; EN исходник не менялся.
 - Microsoft Neural voice — штатный синтезированный голос провайдера, не клонированная запись/персональная voice model Светланы.
 - Реальное воспроизведение TTS на Android/устройстве, STT на конкретном микрофоне и UI runtime ещё не подтверждены.
