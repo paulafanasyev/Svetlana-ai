@@ -6,6 +6,29 @@ import { useChatAgentProfile } from "../ChatAgentProfileContext";
 import styles from "../index.module.less";
 import { publicUrl } from "../../../utils/publicUrl";
 
+export function shouldUseSvetlanaAvatar({
+  name,
+  iconName,
+  iconUrl,
+  isDefaultAssistant = false,
+}: {
+  name?: string | null;
+  iconName?: string | null;
+  iconUrl?: string | null;
+  isDefaultAssistant?: boolean;
+}): boolean {
+  if (iconName?.trim() || iconUrl?.trim()) return false;
+
+  const normalizedName = name?.trim().toLowerCase() ?? "";
+  const isNamedSvetlana =
+    normalizedName === "светлана" ||
+    normalizedName.startsWith("светлана ") ||
+    normalizedName === "svetlana" ||
+    normalizedName.startsWith("svetlana ");
+
+  return isDefaultAssistant || isNamedSvetlana;
+}
+
 /** Shared message-row avatar size. */
 export const MESSAGE_AVATAR_SIZE = 36;
 
@@ -41,6 +64,8 @@ interface ExpertMessageAvatarProps {
   owned?: boolean;
   ownerName?: string | null;
   speaking?: boolean;
+  /** True only for the primary assistant in a single-agent chat. */
+  isDefaultAssistant?: boolean;
 }
 
 export function ExpertMessageAvatar({
@@ -55,14 +80,19 @@ export function ExpertMessageAvatar({
   owned,
   ownerName,
   speaking = false,
+  isDefaultAssistant = false,
 }: ExpertMessageAvatarProps) {
   const { t } = useTranslation();
   const profile = useChatAgentProfile();
   const label = (tooltip ?? name)?.trim() || "";
   const canOpen = Boolean(profile?.canOpen);
-  const normalizedName = label.toLowerCase();
-  const isSvetlana = normalizedName === "светлана" || normalizedName.startsWith("светлана ") || normalizedName === "svetlana" || normalizedName.startsWith("svetlana ") || (!iconName?.trim() && !iconUrl?.trim());
-  const avatar = isSvetlana && !iconUrl?.trim() ? (
+  const useSvetlanaAvatar = shouldUseSvetlanaAvatar({
+    name,
+    iconName,
+    iconUrl,
+    isDefaultAssistant,
+  });
+  const avatar = useSvetlanaAvatar ? (
     <span
       className={styles.expertAgentAvatar}
       style={{
