@@ -63,7 +63,9 @@ describe("ModelListEditor", () => {
     await user.click(screen.getByRole("button", { name: "models.editModel" }));
     expect(await screen.findByDisplayValue("qwen")).toBeInTheDocument();
     expect(scrollIntoView).toHaveBeenCalled();
-    expect(screen.getByText("models.purposeChat")).toBeInTheDocument();
+    // Purpose is fixed by the provider lane and is no longer editable per model.
+    expect(screen.getByText("models.modelIdLabel")).toBeInTheDocument();
+    expect(screen.queryByText("models.purposeChat")).not.toBeInTheDocument();
     expect(screen.queryByText("models.reasoning")).not.toBeInTheDocument();
 
     await user.click(
