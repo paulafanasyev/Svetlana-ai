@@ -3290,6 +3290,7 @@ async def test_restore_respects_runtime_capability_and_expert_scope(
         for row in rows:
             await manager.stop(row.agent_id)
 
+
 @pytest.mark.parametrize(
     ("raw", "expected"),
     [
