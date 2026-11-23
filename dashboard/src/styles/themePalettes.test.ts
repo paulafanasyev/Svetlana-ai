@@ -45,8 +45,8 @@ describe("theme palettes", () => {
     expect(ANTD_BRAND_TOKENS.rose.dark.colorLink).toBe("#F08B9A");
   });
 
-  it("uses Svetlana emerald as the new default brand", () => {
-    expect(DEFAULT_PALETTE).toBe("emerald");
+  it("uses Svetlana indigo as the new default brand", () => {
+    expect(DEFAULT_PALETTE).toBe("indigo");
   });
 
   it.each(VALID_PALETTES.filter((palette) => palette !== "rose"))(
