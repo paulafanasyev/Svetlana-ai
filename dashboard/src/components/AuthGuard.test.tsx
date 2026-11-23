@@ -2,7 +2,7 @@ import { describe, expect, it, vi, beforeEach } from "vitest";
 import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { MemoryRouter, Route, Routes, useNavigate } from "react-router-dom";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import AuthGuard from "./AuthGuard";
 
 vi.mock("../api/modules/auth", () => ({
@@ -71,7 +71,10 @@ describe("AuthGuard offline boot", () => {
 
     function NavProbe() {
       const navigate = useNavigate();
+      const navigated = useRef(false);
       useEffect(() => {
+        if (navigated.current) return;
+        navigated.current = true;
         navigate("/b");
       }, [navigate]);
       return <div>protected-shell</div>;
