@@ -11,10 +11,17 @@ on:
 permissions:
   contents: read
 
+# Keep only the newest PR validation active. Repeated commits must not leave
+# older Vitest runs competing for the same GitHub runner capacity.
+concurrency:
+  group: svetlana-dashboard-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
 jobs:
   dashboard:
     name: Dashboard lint, tests and production build
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     steps:
       - name: Checkout
         uses: actions/checkout@v4
