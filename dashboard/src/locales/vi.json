@@ -227,7 +227,8 @@
     "readAloud": "Đọc thành tiếng",
     "micNotAvailable": "Không thể ghi âm — cần HTTPS",
     "sttNotAvailable": "Thiết bị này không hỗ trợ nhập giọng nói (cần HTTPS)",
-    "ttsAutoplayBlocked": "Trình duyệt đã chặn tự động phát — hãy nhấn đọc thành tiếng lần nữa"
+    "ttsAutoplayBlocked": "Trình duyệt đã chặn tự động phát — hãy nhấn đọc thành tiếng lần nữa",
+    "browserNoVoice": "Trình duyệt không có giọng đọc cho ngôn ngữ này. Chuyển sang Edge TTS."
   },
   "header": {
     "healthLabel": "Trạng thái",

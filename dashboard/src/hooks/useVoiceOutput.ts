@@ -188,7 +188,7 @@ export function useVoiceOutput() {
         onNoVoice: () => {
           if (playGenerationRef.current !== gen) return;
           if (!isMobileUserAgent()) {
-            antMessage.info(t("voice.browserNoChineseVoice"));
+            antMessage.info(t("voice.browserNoVoice"));
           }
           stopBrowserSpeech();
           void speakWithServer(plain, gen, "edge");
