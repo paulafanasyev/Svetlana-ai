@@ -853,6 +853,11 @@ function MessageBubble({
       profileAgentId={avatarProfileId}
       managedRunner={managedRunnerId(expert)}
       speaking={speakingId === message.id}
+      isDefaultAssistant={
+        !isTeamRoom &&
+        Boolean(activeAgent?.agent_id) &&
+        expert?.agent_id === activeAgent?.agent_id
+      }
       {...incomingShareProps(expert)}
     />
   ) : null;
