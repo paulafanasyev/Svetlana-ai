@@ -77,7 +77,7 @@ async def test_catalog(env):
     assert openalex == {
         "kind": "openalex",
         "name": "OpenAlex",
-        "description": "官方 MCP：检索学术文献、引文、研究实体与统计分析",
+        "description": "Official MCP: search scholarly works, citations, research entities, and statistics",
         "auth_kind": "oauth2",
         "doc_url": "https://help.openalex.org/access/connector/",
         "icon": "openalex",
@@ -89,7 +89,7 @@ async def test_catalog(env):
         "login_url": None,
         "guide_url": "https://help.openalex.org/access/connector/",
         "manual_url": "https://help.openalex.org/access/connector/",
-        "auth_hint": "点击「一键授权」登录 OpenAlex（桌面端请用系统浏览器）；查询将使用你自己的 API Key 与每日预算。",
+        "auth_hint": "Click Authorize to sign in to OpenAlex (use the system browser on desktop). Queries use your own API Key and daily quota.",
         "oauth_mode": "dynamic",
         "oauth_ready": True,
         "credential_fields": [],
