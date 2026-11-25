@@ -415,7 +415,7 @@ async def test_create_from_expert_default_name_uses_expert_label(env: Any) -> No
         json={},
     )
     assert r.status_code == 201, r.text
-    assert r.json()["name"] == "General Expert"
+    assert r.json()["name"] == "通用专家"
 
 
 async def test_create_from_expert_without_name_reuses_existing(env: Any) -> None:
