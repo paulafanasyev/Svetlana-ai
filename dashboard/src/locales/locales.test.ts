@@ -72,7 +72,7 @@ describe("localized translation bundles", () => {
     const covered = [...source.keys()].filter((key) => translations.has(key)).length;
     const coverage = covered / source.size;
     console.info(`[i18n] ${locale}: ${covered}/${source.size} English keys (${(coverage * 100).toFixed(2)}%)`);
-    expect(coverage).toBeGreaterThanOrEqual(0.364);
+    expect(coverage).toBeGreaterThanOrEqual(0.369);
   });
 
   it.each(bundles)("%s contains the core Svetlana interface labels", (locale, translations) => {

@@ -745,7 +745,7 @@ def _ensure_sso_oidc_schema(db: DatabasePool) -> None:
               role                TEXT NOT NULL,
               display_name        TEXT,
               disabled            INTEGER NOT NULL DEFAULT 0,
-              locale              TEXT NOT NULL DEFAULT 'zh',
+              locale              TEXT NOT NULL DEFAULT 'ru',
               created_at          INTEGER NOT NULL,
               login_failed_count  INTEGER NOT NULL DEFAULT 0,
               login_locked_until  INTEGER NOT NULL DEFAULT 0,
@@ -1940,7 +1940,7 @@ def _repair_connector_text_credentials(db: DatabasePool) -> None:
 def _repair_legacy_schema(db: DatabasePool) -> None:
     """Idempotent compatibility repairs for local databases from old builds."""
     if _table_exists(db, "users"):
-        _ensure_column(db, "users", "locale", "TEXT NOT NULL DEFAULT 'zh'")
+        _ensure_column(db, "users", "locale", "TEXT NOT NULL DEFAULT 'ru'")
         _ensure_column(db, "users", "login_failed_count", "INTEGER NOT NULL DEFAULT 0")
         _ensure_column(db, "users", "login_locked_until", "INTEGER NOT NULL DEFAULT 0")
         _ensure_column(db, "users", "preferences_json", "TEXT NOT NULL DEFAULT '{}'")

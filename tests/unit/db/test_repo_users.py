@@ -47,6 +47,7 @@ def test_create_and_get(repo: UserRepo):
     assert isinstance(row, UserRow)
     assert row.username == "alice"
     assert row.role == "admin"
+    assert row.locale == "ru"
     assert row.disabled == 0
     assert row.created_at <= int(time.time())
 
