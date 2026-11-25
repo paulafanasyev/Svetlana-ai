@@ -13,7 +13,7 @@ async def test_preferences_bookmarks_roundtrip(env) -> None:
     r = await client.get("/api/preferences", headers=auth)
     assert r.status_code == 200
     body = r.json()
-    assert body["locale"] in ("zh", "en")
+    assert body["locale"] in ("ru", "vi", "en", "zh")
     assert body["remote_browser_bookmarks"] == []
 
     bookmarks = [
