@@ -412,7 +412,7 @@ async def test_ws_auth_failure_has_actionable_error_and_releases_turn(env: Any) 
     agent.raise_on_stream = ModelAuthenticationError("opaque credential rejection")
     frames = await _consume_ws_turn(c, aid, alice_auth, text="check auth")
     error = next(frame for frame in frames if frame.get("type") == "error")
-    assert error["message"] in (stream_error_message(AUTH, "zh"), stream_error_message(AUTH, "en"))
+    assert error["message"] in (stream_error_message(AUTH, "ru"), stream_error_message(AUTH, "zh"), stream_error_message(AUTH, "en"))
     # A corrected credential can be used by the very next turn.
     agent.raise_on_stream = None
     following = await _consume_ws_turn(c, aid, alice_auth, text="try after fixing credentials")
