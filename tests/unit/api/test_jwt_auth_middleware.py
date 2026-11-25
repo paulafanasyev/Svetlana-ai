@@ -207,7 +207,7 @@ async def test_middleware_localizes_auth_errors_by_accept_language(client) -> No
 
     r = await c.get("/api/agents")
     assert r.status_code == 401
-    assert r.json()["error"]["message"] == "认证失败。"  # no header: DEFAULT_LOCALE (zh)
+    assert r.json()["error"]["message"] == "Не удалось выполнить аутентификацию."  # no header: DEFAULT_LOCALE (ru)
 
     # Invalid token follows the same localization.
     r = await c.get(
