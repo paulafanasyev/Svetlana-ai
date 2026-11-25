@@ -1141,7 +1141,7 @@ def test_build_harness_config_language_follows_owner_locale(manager: AgentManage
     assert manager._build_harness_config(row).language == "en"
 
     missing = replace(row, user_id=None)
-    assert manager._build_harness_config(missing).language == "zh"
+    assert manager._build_harness_config(missing).language == "ru"
 
 
 def test_build_harness_config_keeps_system_prompt_after_bootstrap(
