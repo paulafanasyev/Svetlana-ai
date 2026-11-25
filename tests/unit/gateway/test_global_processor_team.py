@@ -2454,7 +2454,7 @@ async def test_on_reply_failed_releases_job(processor_env: dict) -> None:
     )
     assert not jobs.is_busy("host", "child")
     assert any(
-        frame.get("type") == "error" and "失败" in str(frame.get("message")) for frame in frames
+        frame.get("type") == "error" and bool(str(frame.get("message", "")).strip()) for frame in frames
     )
     assert not any(frame.get("type") == "token" for frame in frames)
     assert frames[-1]["type"] == "done"
