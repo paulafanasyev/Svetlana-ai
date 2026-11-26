@@ -503,7 +503,82 @@
     "processOrganizing": "Đang sắp xếp kết quả",
     "newRepliesBelow": "Câu trả lời mới",
     "teamWrapupBadge": "Tổng kết của tác nhân chủ trì",
-    "decisionBadge": "Mô hình ra quyết định đã tham gia"
+    "decisionBadge": "Mô hình ra quyết định đã tham gia",
+    "agentNoDescription": "Chưa có mô tả",
+    "agentProfile": {
+      "open": "Xem thông tin chuyên gia",
+      "openTeam": "Xem thông tin nhóm"
+    },
+    "ask": {
+      "answeredSummary": "Đã trả lời {{count}} câu hỏi",
+      "back": "Quay lại",
+      "dismiss": "Đóng",
+      "dismissedSummary": "Đã đóng {{count}} câu hỏi",
+      "dismissMessage": "Người dùng đã đóng các câu hỏi này mà không trả lời. Đừng hỏi lại — hãy hoàn tất lượt này.",
+      "expand": "Xem",
+      "freeTextPlaceholder": "Nhập câu trả lời",
+      "next": "Tiếp theo",
+      "other": "Khác…",
+      "review": "Xem lại và gửi",
+      "reviewTag": "Xem lại",
+      "skip": "Bạn quyết định",
+      "skipMessage": "Bạn tự quyết định — hãy chọn phương án mặc định phù hợp nhất và cho tôi biết bạn đã giả định điều gì.",
+      "submit": "Gửi câu trả lời",
+      "title": "Trước tiên, hãy trả lời vài câu hỏi",
+      "useCardForAttachments": "Không thể gửi tệp đính kèm khi đang trả lời câu hỏi — hãy dùng thẻ ở trên hoặc trả lời bằng văn bản."
+    },
+    "collapseThinking": "Mặc định thu gọn phần suy luận",
+    "collapseThinkingHint": "Trong cuộc trò chuyện nhóm, phần suy luận và bảng công cụ được thu gọn theo mặc định; cuộc trò chuyện riêng vẫn mở rộng. Bạn có thể thay đổi bất cứ lúc nào. Mỗi tùy chọn được lưu trong trình duyệt này.",
+    "conversationMode": {
+      "executeUtterance": "Thực thi {{path}}"
+    },
+    "disableStreamUsageFailed": "Không thể tự động tắt tùy chọn này. Trong cài đặt mô hình, hãy tắt “Hiển thị số token trực tiếp trong cuộc trò chuyện”.",
+    "disableStreamUsageSuccess": "Đã tắt hiển thị số token trực tiếp. Hãy thử lại cuộc trò chuyện.",
+    "forkDisabledWhileBusy": "Hãy đợi câu trả lời hoặc yêu cầu phê duyệt hiện tại hoàn tất.",
+    "forkNoAssistant": "Chưa có câu trả lời AI để tạo cuộc trò chuyện nhánh.",
+    "forkSuccessEmpty": "Đã tạo cuộc trò chuyện mới trống.",
+    "hitl": {
+      "allowAllLink": "Cho phép tất cả công cụ trong cuộc trò chuyện này",
+      "allowedAll": "Đã cho phép tất cả trong cuộc trò chuyện này",
+      "allowedTool": "Đã cho phép công cụ này trong cuộc trò chuyện",
+      "allowedTools": "Đã cho phép các công cụ này trong cuộc trò chuyện",
+      "allowSession": "Cho phép trong cuộc trò chuyện này",
+      "allowTool": "Cho phép công cụ này trong cuộc trò chuyện",
+      "allowTools": "Cho phép các công cụ này trong cuộc trò chuyện",
+      "approve": "Phê duyệt",
+      "approved": "Đã phê duyệt",
+      "finishPendingFirst": "Hãy hoàn tất yêu cầu phê duyệt hoặc câu hỏi đang chờ trước khi gửi tin nhắn khác.",
+      "memberRequest": "{{name}} đang yêu cầu thực hiện thao tác này",
+      "reject": "Từ chối",
+      "rejected": "Người dùng đã từ chối",
+      "rejectedLabel": "Đã từ chối",
+      "title": "Xác nhận thao tác này"
+    },
+    "noAgentsTitle": "Chưa có chuyên gia nào",
+    "noChattableAgentsHint": "Hiện không có chuyên gia nào của bạn có thể trò chuyện — hãy bật một chuyên gia hoặc hoàn tất cấu hình mô hình của chuyên gia đó.",
+    "polish": {
+      "emptyResult": "Mô hình trả về kết quả trống",
+      "failed": "Không thể chỉnh sửa câu chữ. Vui lòng thử lại."
+    },
+    "queue": {
+      "flushFailed": "Không thể gửi tin nhắn trong hàng đợi; tin nhắn đã được đưa trở lại hàng đợi.",
+      "full": "Hàng đợi đã đầy (tối đa 10 tin nhắn). Hãy xóa một tin trước khi thêm tin mới.",
+      "reclaimOverwrite": "Ô soạn tin hiện đã có văn bản hoặc tệp đính kèm. Lấy lại tin nhắn trong hàng đợi sẽ thay thế nội dung đó.",
+      "reclaimOverwriteTitle": "Thay thế bản nháp hiện tại?"
+    },
+    "remoteExpert": {
+      "manageToast": "Đây là chuyên gia từ máy chủ ngang hàng. Hãy quản lý kỹ năng, mô hình, cơ sở tri thức và các cài đặt liên quan trên Octop ngang hàng."
+    },
+    "sharedTurnBusy": "Câu trả lời trước đó vẫn chưa hoàn tất.",
+    "shareFailed": "Không thể thay đổi trạng thái chia sẻ. Vui lòng thử lại.",
+    "steer": {
+      "alreadyDrained": "Nội dung chỉnh sửa này đã được đưa vào câu trả lời, vì vậy nó vẫn nằm trong cuộc trò chuyện.",
+      "placeholder": "Tiếp tục nhập để xếp một chỉ dẫn bổ sung trong khi lượt trả lời đang chạy…",
+      "rejected": "Không gửi được nội dung chỉnh sửa ({{reason}})",
+      "withdrawn": "Đã thu hồi nội dung chỉnh sửa và đưa trở lại ô soạn tin",
+      "withdrawPending": "Máy chủ vẫn đang xác nhận. Vui lòng thử lại sau giây lát."
+    },
+    "streamResumed": "Kết nối đã được khôi phục. Kéo xuống để làm mới nếu có nội dung chưa đầy đủ."
   },
   "invite": {
     "title": "Tham gia bằng lời mời",
@@ -3043,5 +3118,29 @@
     "deleted": "Đã xóa",
     "notePrivateTo": "ghi chú riêng của {{username}}",
     "notePrivate": "ghi chú riêng"
+  },
+  "browserWorkspace": {
+    "agentControl": "Tác nhân đang điều khiển",
+    "browserStatusActive": "Trình duyệt: {{owner}}",
+    "browserStatusIdle": "Trình duyệt (nhấn để xem hoặc tiếp quản)",
+    "chromeMissingJumpToInstall": "Mở Bàn làm việc → Trình duyệt để cài đặt?",
+    "chromeMissingTitle": "Không tìm thấy trình duyệt",
+    "userTakeover": "Người dùng tiếp quản"
+  },
+  "chatUsage": {
+    "cacheHit": "lượt lấy từ bộ nhớ đệm",
+    "decisionSaved": "đã lưu quyết định",
+    "input": "đầu vào",
+    "output": "đầu ra",
+    "total": "tổng cộng"
+  },
+  "modelConfig": {
+    "configureButton": "Cấu hình mô hình",
+    "promptMessage": "Mở Quản trị → Quản lý mô hình, thêm một nhà cung cấp và bật ít nhất một mô hình trước khi trò chuyện.",
+    "promptMessageNoPermission": "Hiện chưa có mô hình nào khả dụng. Hãy nhờ quản trị viên cấu hình mô hình trước khi trò chuyện.",
+    "promptTitle": "Cần có mô hình"
+  },
+  "slash": {
+    "menuHint": "↑↓ di chuyển · Enter xác nhận · Esc đóng"
   }
 }

@@ -72,7 +72,30 @@ describe("localized translation bundles", () => {
     const covered = [...source.keys()].filter((key) => translations.has(key)).length;
     const coverage = covered / source.size;
     console.info(`[i18n] ${locale}: ${covered}/${source.size} English keys (${(coverage * 100).toFixed(2)}%)`);
-    expect(coverage).toBeGreaterThanOrEqual(0.375);
+    expect(coverage).toBeGreaterThanOrEqual(0.385);
+  });
+
+  it.each(bundles)("%s contains the core chat interaction labels", (locale, translations) => {
+    for (const key of [
+          "chat.sharedTurnBusy",
+          "chat.ask.title",
+          "chat.ask.submit",
+          "chat.ask.dismiss",
+          "chat.ask.dismissMessage",
+          "chat.hitl.title",
+          "chat.hitl.approve",
+          "chat.hitl.reject",
+          "chat.hitl.allowSession",
+          "chat.queue.full",
+          "chat.queue.reclaimOverwriteTitle",
+          "chat.steer.placeholder",
+          "modelConfig.promptTitle",
+          "browserWorkspace.chromeMissingTitle",
+          "browserWorkspace.browserStatusIdle",
+          "chat.streamResumed"
+    ]) {
+      expect(translations.has(key), `${locale} is missing ${key}`).toBe(true);
+    }
   });
 
   it.each(bundles)("%s contains the core Svetlana interface labels", (locale, translations) => {
