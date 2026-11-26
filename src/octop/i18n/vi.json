@@ -237,5 +237,41 @@
     "version_unavailable": "Quá trình cài đặt đã hoàn tất nhưng không thể xác minh phiên bản Octop đã cài.",
     "version_mismatch": "Quá trình cài đặt đã hoàn tất nhưng phiên bản đã cài {actual} không khớp với phiên bản yêu cầu {expected}.",
     "version_not_newer": "Quá trình cài đặt đã hoàn tất nhưng phiên bản đã cài {actual} không mới hơn phiên bản trước {previous}."
+  },
+  "voice": {
+    "probe": {
+      "not_configured": "Nhà cung cấp chưa được cấu hình",
+      "credentials_missing": "Thiếu thông tin xác thực API",
+      "tencent_credentials": "Tencent Cloud yêu cầu secret_id và secret_key",
+      "http_status": "Nhà cung cấp trả về HTTP {status}",
+      "network_error": "Lỗi mạng: {name}"
+    },
+    "realtime": {
+      "error_4002": "Xác thực nhận dạng giọng nói thời gian thực thất bại. Hãy kiểm tra SecretId và SecretKey.",
+      "error_4003": "Tài khoản Tencent Cloud này chưa bật tính năng nhận dạng giọng nói thời gian thực.",
+      "error_4004": "Gói tài nguyên nhận dạng giọng nói thời gian thực của Tencent Cloud đã hết.",
+      "error_4005": "Tài khoản Tencent Cloud đang nợ phí. Hãy nạp tiền rồi thử lại.",
+      "error_4006": "Đã đạt giới hạn số phiên nhận dạng giọng nói đồng thời. Vui lòng thử lại sau.",
+      "error_4007": "Không thể giải mã âm thanh. Hãy kiểm tra đầu vào micrô.",
+      "error_4008": "Tải âm thanh lên quá thời gian chờ. Hãy kiểm tra kết nối mạng.",
+      "error_4009": "Kết nối nhận dạng giọng nói thời gian thực đã bị đóng.",
+      "error_5000": "Dịch vụ Tencent Cloud tạm thời không khả dụng. Vui lòng thử lại sau.",
+      "error_unknown": "Nhận dạng giọng nói thời gian thực thất bại. Vui lòng thử lại sau."
+    },
+    "tencent": {
+      "AuthFailure": {
+        "SecretIdNotFound": "Không tìm thấy SecretId. Hãy kiểm tra khóa đã nhập.",
+        "SignatureFailure": "Xác minh chữ ký thất bại. Hãy kiểm tra SecretKey.",
+        "UnauthorizedOperation": "Tài khoản Tencent Cloud này không được phép sử dụng API giọng nói."
+      },
+      "UnsupportedOperation": {
+        "ServerNotOpen": "Dịch vụ giọng nói Tencent Cloud này chưa được bật cho tài khoản."
+      },
+      "FailedOperation": {
+        "ServiceIsolate": "Tài khoản Tencent Cloud đang nợ phí. Hãy nạp tiền rồi thử lại."
+      },
+      "UnauthorizedOperation": "Tài khoản Tencent Cloud này không được phép sử dụng API giọng nói.",
+      "RequestLimitExceeded": "Tencent Cloud đã giới hạn tần suất yêu cầu. Vui lòng thử lại sau."
+    }
   }
 }

@@ -1612,7 +1612,9 @@
       "successSummary": "Đã đồng bộ {{mdSynced}} tài liệu, {{skillsSynced}} kỹ năng và cập nhật cấu hình.",
       "failed": "Di chuyển thất bại",
       "warnings": "Cảnh báo",
-      "errors": "Lỗi"
+      "errors": "Lỗi",
+      "alreadyMigrated": "Đã hoàn tất di chuyển",
+      "detectFailed": "Không thể phát hiện. Vui lòng bỏ qua bước này."
     },
     "password": {
       "title": "Đặt mật khẩu đăng nhập",
@@ -1652,6 +1654,71 @@
       "manualCommand": "octop install-browsers",
       "logs": "Nhật ký cài đặt",
       "skipHint": "Bạn có thể bỏ qua bước này. Việc duyệt website, chụp ảnh màn hình và tự động hóa trực tuyến sẽ không khả dụng cho đến khi trình duyệt được cài đặt."
+    },
+    "scene": {
+      "title": "Chọn kịch bản ứng dụng",
+      "desc": "Chọn một kịch bản có sẵn để nhanh chóng cấu hình không gian làm việc của tác nhân, hoặc bỏ qua bước này để dùng cấu hình mặc định.",
+      "loading": "Đang tải kịch bản…",
+      "initializing": "Đang khởi tạo không gian làm việc…",
+      "loadFailed": "Không thể tải danh sách kịch bản",
+      "noScenes": "Không có kịch bản nào",
+      "apply": "Áp dụng kịch bản này",
+      "applied": "Đã áp dụng",
+      "applying": "Đang áp dụng…",
+      "applySuccess": "Đã áp dụng kịch bản thành công",
+      "applyFailed": "Không thể áp dụng kịch bản",
+      "applyConfirmTitle": "Áp dụng kịch bản",
+      "applyConfirmContent": "Áp dụng kịch bản “{{name}}” sẽ ghi đè cấu hình không gian làm việc hiện tại. Bạn có muốn tiếp tục không?",
+      "skipHint": "Bạn có thể bỏ qua bước này và chọn kịch bản sau trong mục Agent → Cá nhân hóa.",
+      "selected": "Đã chọn",
+      "clickToSelect": "Nhấn để chọn"
+    },
+    "search": {
+      "title": "Cấu hình tìm kiếm AI",
+      "desc": "Cấu hình các nhà cung cấp tìm kiếm web bằng AI để trợ lý có thể tìm thông tin trên Internet. Mỗi dịch vụ yêu cầu API key riêng.",
+      "tip": "Bạn có thể cấu hình nhà cung cấp tìm kiếm ngay bây giờ hoặc bỏ qua bước này. Có thể bật hoặc thay đổi sau trong Cài đặt → Môi trường.",
+      "configured": "Đã cấu hình",
+      "unconfigured": "Chưa cấu hình",
+      "providers": {
+        "tavily": {
+          "desc": "Tìm kiếm web bằng AI với câu trả lời thông minh"
+        },
+        "brave": {
+          "desc": "Công cụ tìm kiếm chú trọng quyền riêng tư với chỉ mục độc lập"
+        },
+        "deepseek": {
+          "desc": "Tìm kiếm AI-native với xếp hạng, tóm tắt và liên kết nguồn"
+        },
+        "google": {
+          "desc": "Google Custom Search với công cụ tìm kiếm của riêng bạn"
+        },
+        "kimi": {
+          "desc": "Moonshot AI với khả năng tìm kiếm web tích hợp"
+        },
+        "yuanbao": {
+          "desc": "Tencent Yuanbao Search trên web mở và nội dung của Tencent"
+        }
+      },
+      "test": "Kiểm tra kết nối",
+      "testSuccess": "Kiểm tra tìm kiếm {{name}} thành công",
+      "testFailed": "Kiểm tra tìm kiếm {{name}} thất bại: {{error}}",
+      "saveSuccess": "Đã lưu cấu hình {{name}}",
+      "saveFailed": "Không thể lưu cấu hình",
+      "required": "{{key}} là trường bắt buộc",
+      "configuredCount": "Đã cấu hình {{count}} trên tổng số {{total}} nhà cung cấp tìm kiếm",
+      "getApiKey": "Lấy API key",
+      "docs": "Tài liệu hướng dẫn",
+      "googleCseIdHint": "ID công cụ tìm kiếm Custom Search tại https://programmablesearchengine.google.com/",
+      "revoke": "Thu hồi quyền ủy quyền",
+      "revokeTitle": "Thu hồi quyền ủy quyền của {{name}}",
+      "revokeConfirm": "Bạn có chắc muốn thu hồi quyền ủy quyền của {{name}} không? API key sẽ bị xóa và bạn cần cấu hình lại để sử dụng nhà cung cấp tìm kiếm này.",
+      "revokeSuccess": "Đã thu hồi quyền ủy quyền của {{name}}",
+      "revokeFailed": "Không thể thu hồi quyền ủy quyền"
+    },
+    "channel": {
+      "title": "Cấu hình kênh liên lạc",
+      "desc": "Cấu hình các kênh liên lạc (Dashboard, QQ, Feishu, YuanBao, WeCom, v.v.) cho trợ lý AI. Bạn có thể cấu hình ngay bây giờ hoặc sau trong Cài đặt → Kênh.",
+      "optionalHint": "Bước này không bắt buộc. Bạn có thể bỏ qua và cấu hình kênh sau trong Cài đặt → Kênh."
     }
   },
   "skills": {
