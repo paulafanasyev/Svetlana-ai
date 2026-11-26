@@ -406,9 +406,12 @@ async def test_create_from_expert_stores_default_model(env: Any) -> None:
 async def test_create_from_expert_default_name_uses_expert_label(env: Any) -> None:
     """Omitting ``name`` should use the expert template's localized label."""
     c, _srv, auth = env
+    # A saved user preference takes precedence over the browser's language header.
+    prefs = await c.patch("/api/preferences", headers=auth, json={"locale": "zh"})
+    assert prefs.status_code == 200
     r = await c.post(
         "/api/agents/from-expert/default",
-        headers={**auth, "Accept-Language": "zh"},
+        headers=auth,
         json={},
     )
     assert r.status_code == 201, r.text

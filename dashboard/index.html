@@ -1,8 +1,8 @@
 <!doctype html>
-<html lang="en">
+<html lang="ru">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="%BASE_URL%favico.svg" />
+    <link rel="icon" type="image/svg+xml" href="%BASE_URL%svetlana-mark.svg" />
     <link rel="apple-touch-icon" href="%BASE_URL%apple-touch-icon.png" />
     <meta
       name="viewport"
@@ -16,7 +16,7 @@
     />
     <meta
       name="theme-color"
-      content="#1a1c28"
+      content="#0a0e1a"
       media="(prefers-color-scheme: dark)"
     />
     <!-- PWA: standalone mode for iOS Safari -->
@@ -26,10 +26,10 @@
       name="apple-mobile-web-app-status-bar-style"
       content="black-translucent"
     />
-    <meta name="apple-mobile-web-app-title" content="Octop" />
+    <meta name="apple-mobile-web-app-title" content="Светлана 2.0" />
     <!-- Web App Manifest -->
     <link rel="manifest" href="%BASE_URL%manifest.json" />
-    <title>Octop</title>
+    <title>Светлана 2.0</title>
     <!--
       Resolve dashboard theme before first paint. Must stay a classic script:
       the splash CSS keys off html[data-theme], not prefers-color-scheme,
@@ -45,6 +45,8 @@
     <script id="octop-boot-theme">
       (function () {
         var KEY = "theme";
+        var DEFAULT_PALETTE = "indigo";
+        var LEGACY_PALETTE_KEY = "octop:ui-palette";
         var mode = "light";
         function systemDark() {
           try {
@@ -55,6 +57,30 @@
         }
         function isPref(value) {
           return value === "light" || value === "dark" || value === "system";
+        }
+        function isPalette(value) {
+          return (
+            value === "rose" ||
+            value === "tech" ||
+            value === "indigo" ||
+            value === "teal" ||
+            value === "violet" ||
+            value === "emerald" ||
+            value === "amber" ||
+            value === "slate" ||
+            value === "custom"
+          );
+        }
+        function readStoredPalette() {
+          var raw = localStorage.getItem(KEY);
+          if (raw && raw.charAt(0) === "{") {
+            try {
+              var parsed = JSON.parse(raw);
+              if (parsed && isPalette(parsed.palette)) return parsed.palette;
+            } catch (e) {}
+          }
+          var legacy = localStorage.getItem(LEGACY_PALETTE_KEY);
+          return isPalette(legacy) ? legacy : DEFAULT_PALETTE;
         }
         function readStoredPref() {
           var raw = localStorage.getItem(KEY);
@@ -96,7 +122,9 @@
             );
           } catch (e2) {}
         }
+        var palette = DEFAULT_PALETTE;
         try {
+          palette = readStoredPalette();
           var fromShell = shellPref();
           var pref = fromShell || "system";
           if (fromShell) rememberShellPref(fromShell);
@@ -108,7 +136,8 @@
           if (systemDark()) mode = "dark";
         }
         document.documentElement.setAttribute("data-theme", mode);
-        var themeColor = mode === "dark" ? "#1a1c28" : "#ffffff";
+        document.documentElement.setAttribute("data-palette", palette);
+        var themeColor = mode === "dark" ? "#0a0e1a" : "#ffffff";
         var metas = document.querySelectorAll('meta[name="theme-color"]');
         for (var i = 0; i < metas.length; i++) {
           metas[i].setAttribute("content", themeColor);
@@ -150,11 +179,11 @@
            the empty page a shape instead of a spinner floating in a void. */
         background: radial-gradient(
             720px 380px at 50% -8%,
-            rgba(232, 93, 117, 0.11),
+            rgba(99, 102, 241, 0.11),
             transparent 68%
           ),
           #f5f6f8;
-        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
+        font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI",
           "Noto Sans SC", sans-serif;
         color: #4b5563;
         user-select: none;
@@ -162,16 +191,16 @@
       }
       html[data-theme="dark"],
       html[data-theme="dark"] body {
-        background: #0e0e0e;
+        background: #0a0e1a;
       }
       html[data-theme="dark"] #octop-boot {
         background: radial-gradient(
             720px 380px at 50% -8%,
-            rgba(240, 139, 154, 0.1),
+            rgba(129, 140, 248, 0.1),
             transparent 68%
           ),
-          #0e0e0e;
-        color: rgba(255, 255, 255, 0.6);
+          #0a0e1a;
+        color: #94a3b8;
       }
       .octop-boot-stack {
         display: flex;
@@ -218,11 +247,11 @@
         position: absolute;
         inset: 0;
         box-sizing: border-box;
-        border: 2px solid rgba(232, 93, 117, 0.14);
+        border: 2px solid rgba(99, 102, 241, 0.14);
         border-radius: 50%;
       }
       html[data-theme="dark"] .octop-boot-spinner-track {
-        border-color: rgba(240, 139, 154, 0.16);
+        border-color: rgba(129, 140, 248, 0.16);
       }
       .octop-boot-spinner-ring {
         position: absolute;
@@ -232,8 +261,8 @@
           from 0deg,
           transparent 0%,
           transparent 55%,
-          rgba(232, 93, 117, 0.4) 80%,
-          #e85d75 100%
+          rgba(99, 102, 241, 0.4) 80%,
+          #6366f1 100%
         );
         -webkit-mask: radial-gradient(
           farthest-side,
@@ -252,8 +281,8 @@
           from 0deg,
           transparent 0%,
           transparent 55%,
-          rgba(240, 139, 154, 0.4) 80%,
-          #f08b9a 100%
+          rgba(129, 140, 248, 0.4) 80%,
+          #818cf8 100%
         );
       }
       @keyframes octop-boot-spin {

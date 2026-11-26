@@ -1052,7 +1052,9 @@ def test_upgrade_keeps_locale_bundle_when_installer_replaces_resources(
     bundles = tmp_path / "i18n"
     bundles.mkdir()
     original = {}
-    for language in ("en", "zh"):
+    # Preserve every shipped locale across installer replacement, including the
+    # fork's Russian default and Vietnamese translation bundles.
+    for language in ("en", "zh", "ru", "vi"):
         content = (
             loader.resources.files("octop.i18n")
             .joinpath(f"{language}.json")
@@ -1076,7 +1078,7 @@ def test_upgrade_keeps_locale_bundle_when_installer_replaces_resources(
     )
 
     def install(*args: object, **kwargs: object) -> tuple[int, str]:
-        for language in ("en", "zh"):
+        for language in ("en", "zh", "ru", "vi"):
             replacement = dict(original[language])
             replacement.pop("update")
             (bundles / f"{language}.json").write_text(json.dumps(replacement), encoding="utf-8")

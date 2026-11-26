@@ -11,11 +11,12 @@ import { prepareSpeechText } from "../utils/plainTextForSpeech";
 import { speakBrowserText, stopBrowserSpeech } from "../utils/browserSpeech";
 import { isMobileUserAgent } from "../utils/mobileDevice";
 import { WavStreamPlayer } from "../utils/wavStreamPlayer";
-
+import { speechLocaleFromUi } from "../utils/localePrefs";
+import { edgeVoiceForLocale } from "../utils/edgeVoice";
 import { message as antMessage } from "@/utils/antdMessage";
 
 export function useVoiceOutput() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const [speakingId, setSpeakingId] = useState<string | null>(null);
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const streamPlayerRef = useRef<WavStreamPlayer | null>(null);
@@ -126,7 +127,10 @@ export function useVoiceOutput() {
       }
 
       try {
-        const blob = await voiceApi.synthesize(plain, provider);
+        const active = cachedActiveVoice();
+        const ttsProvider = provider ?? active?.tts;
+        const voiceId = ttsProvider === "edge" ? edgeVoiceForLocale(i18n.language) : undefined;
+        const blob = await voiceApi.synthesize(plain, provider, voiceId);
         if (playGenerationRef.current !== gen) return;
 
         const url = URL.createObjectURL(blob);
@@ -163,12 +167,13 @@ export function useVoiceOutput() {
         finishSpeaking();
       }
     },
-    [finishSpeaking, speakMimoStream, t],
+    [finishSpeaking, speakMimoStream, t, i18n.language],
   );
 
   const speakWithBrowser = useCallback(
     (plain: string, gen: number) => {
       speakBrowserText(plain, {
+        locale: speechLocaleFromUi(i18n.language),
         onDone: () => {
           if (playGenerationRef.current !== gen) return;
           finishSpeaking();
@@ -176,14 +181,14 @@ export function useVoiceOutput() {
         onNoVoice: () => {
           if (playGenerationRef.current !== gen) return;
           if (!isMobileUserAgent()) {
-            antMessage.info(t("voice.browserNoChineseVoice"));
+            antMessage.info(t("voice.browserNoVoice"));
           }
           stopBrowserSpeech();
           void speakWithServer(plain, gen, "edge");
         },
       });
     },
-    [finishSpeaking, speakWithServer, t],
+    [finishSpeaking, speakWithServer, t, i18n.language],
   );
 
   const beginPlayback = useCallback(

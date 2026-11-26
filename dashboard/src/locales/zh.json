@@ -3232,7 +3232,8 @@
     "readAloud": "朗读",
     "micNotAvailable": "此设备不支持录音，请通过 HTTPS 访问",
     "sttNotAvailable": "此设备不支持语音输入（需要 HTTPS）",
-    "ttsAutoplayBlocked": "浏览器阻止了自动播放，请再次点击朗读按钮"
+    "ttsAutoplayBlocked": "浏览器阻止了自动播放，请再次点击朗读按钮",
+    "browserNoVoice": "浏览器没有适用于此语言的语音，正在切换到 Edge TTS。"
   },
   "security": {
     "intro": "配置专家运行时的安全防护策略。保存后已运行的专家会自动重新加载配置。",
@@ -8027,5 +8028,11 @@
     "nameRequired": "请先填写名称",
     "failed": "润色失败，请稍后重试",
     "emptyResult": "模型未返回结果"
+  },
+  "svetlana": {
+    "name": "Svetlana 2.0",
+    "openChat": "打开与 Svetlana 的聊天",
+    "speaking": "正在说话…",
+    "ready": "随时为您提供帮助"
   }
 }

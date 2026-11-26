@@ -35,6 +35,7 @@ import { useLayoutMode } from "../../context/LayoutModeContext";
 import { useDashboardPushToast } from "../../hooks/useDashboardPushToast";
 import { useRailShortcuts } from "../../hooks/useRailShortcuts";
 import { DESKTOP_CHROME_HEIGHT } from "../../utils/desktopChrome";
+import SvetlanaCompanion from "../../components/SvetlanaCompanion";
 
 const Chat = lazy(() => import("../../pages/Chat"));
 const WorkbenchPage = lazy(() => import("../../pages/Control/Workbench"));
@@ -440,6 +441,7 @@ export default function MainLayout() {
             </div>
           </div>
         </div>
+        <SvetlanaCompanion />
       </BackupOperationProvider>
     </ServiceRestartProvider>
   );

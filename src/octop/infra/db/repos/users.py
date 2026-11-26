@@ -116,7 +116,7 @@ class UserRepo:
         password_hash: str | None = None,
         role: str,
         display_name: str | None = None,
-        locale: str = "zh",
+        locale: str = "ru",
         email: str | None = None,
         sso_provider_id: int | None = None,
         sso_subject: str | None = None,

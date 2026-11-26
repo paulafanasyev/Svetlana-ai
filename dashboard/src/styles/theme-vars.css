@@ -1,6 +1,6 @@
 /* ===================================================================
    Octop Design System v3 – CSS Custom Properties
-   Default brand: Elegant Rose #E85D75
+   Default brand: Svetlana Indigo #6366F1
    Palettes via html[data-palette="rose|tech|indigo|teal|violet|emerald|amber|slate"]
    Mode via html[data-theme="light|dark"]
    =================================================================== */
@@ -193,44 +193,44 @@ html[data-theme="light"] {
 /* ---------- DARK THEME ---------- */
 html[data-theme="dark"] {
   /* ---- Backgrounds ---- */
-  --fn-bg-primary: #141414;
-  --fn-bg-secondary: #1a1a1a;
-  --fn-bg-tertiary: #222222;
-  --fn-bg-elevated: #1e1e1e;
-  --fn-bg-layout: #0e0e0e;
-  --fn-bg-container: #141414;
+  --fn-bg-primary: #111827;
+  --fn-bg-secondary: #0a0e1a;
+  --fn-bg-tertiary: #1e293b;
+  --fn-bg-elevated: #111827;
+  --fn-bg-layout: #0a0e1a;
+  --fn-bg-container: #111827;
   --fn-bg-hover: rgba(232, 93, 117, 0.08);
   --fn-bg-active: rgba(232, 93, 117, 0.14);
   --fn-bg-selected: rgba(232, 93, 117, 0.1);
-  --fn-bg-code: #1e1e1e;
-  --fn-bg-toolbar: #161616;
-  --fn-bg-toolbar-hover: #222222;
-  --fn-bg-input-label: #1a1a1a;
+  --fn-bg-code: #060911;
+  --fn-bg-toolbar: #060911;
+  --fn-bg-toolbar-hover: #1e293b;
+  --fn-bg-input-label: #111827;
   --fn-bg-success-light: rgba(16, 185, 129, 0.08);
   --fn-bg-danger-light: rgba(239, 68, 68, 0.08);
   --fn-bg-warning-light: rgba(245, 158, 11, 0.08);
   --fn-bg-info-light: rgba(59, 130, 246, 0.08);
-  --fn-bg-glass: rgba(14, 14, 14, 0.8);
-  --fn-bg-sidebar: #141414;
-  --fn-bg-base: #141414;
-  --fn-bg-page: #0e0e0e;
+  --fn-bg-glass: rgba(17, 24, 39, 0.8);
+  --fn-bg-sidebar: #060911;
+  --fn-bg-base: #0a0e1a;
+  --fn-bg-page: #0a0e1a;
   --fn-bg-quaternary: rgba(255, 255, 255, 0.04);
-  --fn-bg-subtle: #1e1e1e;
-  --fn-bg-secondary-hover: #222222;
-  --fn-bg-secondary-active: #2a2a2a;
-  --fn-surface: #1e1e1e;
-  --fn-surface-sunken: #1a1a1a;
+  --fn-bg-subtle: #111827;
+  --fn-bg-secondary-hover: #1e293b;
+  --fn-bg-secondary-active: #334155;
+  --fn-surface: #111827;
+  --fn-surface-sunken: #0a0e1a;
   --fn-fill-hover: rgba(255, 255, 255, 0.08);
   --fn-fill-tertiary: rgba(255, 255, 255, 0.06);
 
   /* ---- Text ---- */
-  --fn-text-primary: rgba(255, 255, 255, 0.9);
-  --fn-text-secondary: rgba(255, 255, 255, 0.6);
-  --fn-text-tertiary: rgba(255, 255, 255, 0.35);
-  --fn-text-quaternary: rgba(255, 255, 255, 0.2);
-  --fn-text-placeholder: rgba(255, 255, 255, 0.16);
-  --fn-text-disabled: rgba(255, 255, 255, 0.16);
-  --fn-text-inverse: #0e0e0e;
+  --fn-text-primary: #e2e8f0;
+  --fn-text-secondary: #94a3b8;
+  --fn-text-tertiary: rgba(148, 163, 184, 0.72);
+  --fn-text-quaternary: rgba(148, 163, 184, 0.42);
+  --fn-text-placeholder: rgba(148, 163, 184, 0.55);
+  --fn-text-disabled: rgba(148, 163, 184, 0.35);
+  --fn-text-inverse: #0a0e1a;
   --fn-text-brand: #f08b9a;
   --fn-text-danger: #f87171;
   --fn-text-link: var(--fn-text-brand);
@@ -239,16 +239,16 @@ html[data-theme="dark"] {
   --fn-font-mono: ui-monospace, "SFMono-Regular", Consolas, monospace;
 
   /* ---- Borders ---- */
-  --fn-border-primary: rgba(255, 255, 255, 0.08);
-  --fn-border-secondary: rgba(255, 255, 255, 0.05);
-  --fn-border-tertiary: rgba(255, 255, 255, 0.03);
-  --fn-border-input: rgba(255, 255, 255, 0.12);
-  --fn-border-input-alt: rgba(255, 255, 255, 0.09);
+  --fn-border-primary: #1e293b;
+  --fn-border-secondary: rgba(30, 41, 59, 0.75);
+  --fn-border-tertiary: rgba(30, 41, 59, 0.4);
+  --fn-border-input: #334155;
+  --fn-border-input-alt: #1e293b;
   --fn-border-focus: #f08b9a;
-  --fn-border: rgba(255, 255, 255, 0.08);
-  --fn-border-color: rgba(255, 255, 255, 0.08);
-  --fn-border-strong: rgba(255, 255, 255, 0.16);
-  --fn-border-subtle: rgba(255, 255, 255, 0.05);
+  --fn-border: #1e293b;
+  --fn-border-color: #1e293b;
+  --fn-border-strong: #334155;
+  --fn-border-subtle: rgba(30, 41, 59, 0.55);
   --fn-border-success: rgba(52, 211, 153, 0.25);
 
   /* ---- Brand (rose, lightened for dark bg) ---- */
@@ -337,9 +337,9 @@ html[data-theme="dark"] {
 
   /* ---- Sidebar ---- */
   --fn-sidebar-width: 240px;
-  --fn-sidebar-bg: #141414;
-  --fn-sidebar-border: rgba(255, 255, 255, 0.06);
-  --fn-sidebar-item-hover: rgba(255, 255, 255, 0.05);
+  --fn-sidebar-bg: #060911;
+  --fn-sidebar-border: #1e293b;
+  --fn-sidebar-item-hover: rgba(148, 163, 184, 0.08);
   --fn-sidebar-item-active-bg: rgba(232, 93, 117, 0.14);
   --fn-sidebar-item-active: rgba(232, 93, 117, 0.14);
   --fn-sidebar-item-active-text: #f08b9a;
@@ -347,7 +347,7 @@ html[data-theme="dark"] {
 
   /* ---- Header ---- */
   --fn-header-height: 56px;
-  --fn-header-bg: #0e0e0e;
+  --fn-header-bg: #060911;
   --fn-header-blur: 0px;
   --fn-chat-chrome-height: 58px;
   --fn-chat-divider: var(--fn-border-primary);
@@ -370,7 +370,7 @@ html[data-theme="dark"] {
 
 /* ===================================================================
    Brand palettes — override only brand-tinted tokens
-   Default / data-palette="rose" uses the light/dark blocks above.
+   The active palette overrides brand-tinted tokens; the base neutral dark surfaces use Svetlana navy.
    =================================================================== */
 
 /* ---------- TECH (#4B74FA) ---------- */

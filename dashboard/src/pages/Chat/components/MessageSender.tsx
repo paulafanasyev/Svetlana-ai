@@ -4,6 +4,30 @@ import { useTranslation } from "react-i18next";
 import ExpertAgentAvatar from "./ExpertAgentAvatar";
 import { useChatAgentProfile } from "../ChatAgentProfileContext";
 import styles from "../index.module.less";
+import { publicUrl } from "../../../utils/publicUrl";
+
+export function shouldUseSvetlanaAvatar({
+  name,
+  iconName,
+  iconUrl,
+  isDefaultAssistant = false,
+}: {
+  name?: string | null;
+  iconName?: string | null;
+  iconUrl?: string | null;
+  isDefaultAssistant?: boolean;
+}): boolean {
+  if (iconName?.trim() || iconUrl?.trim()) return false;
+
+  const normalizedName = name?.trim().toLowerCase() ?? "";
+  const isNamedSvetlana =
+    normalizedName === "светлана" ||
+    normalizedName.startsWith("светлана ") ||
+    normalizedName === "svetlana" ||
+    normalizedName.startsWith("svetlana ");
+
+  return isDefaultAssistant || isNamedSvetlana;
+}
 
 /** Shared message-row avatar size. */
 export const MESSAGE_AVATAR_SIZE = 36;
@@ -39,6 +63,9 @@ interface ExpertMessageAvatarProps {
   shared?: boolean;
   owned?: boolean;
   ownerName?: string | null;
+  speaking?: boolean;
+  /** True only for the primary assistant in a single-agent chat. */
+  isDefaultAssistant?: boolean;
 }
 
 export function ExpertMessageAvatar({
@@ -52,12 +79,41 @@ export function ExpertMessageAvatar({
   shared,
   owned,
   ownerName,
+  speaking = false,
+  isDefaultAssistant = false,
 }: ExpertMessageAvatarProps) {
   const { t } = useTranslation();
   const profile = useChatAgentProfile();
   const label = (tooltip ?? name)?.trim() || "";
   const canOpen = Boolean(profile?.canOpen);
-  const avatar = (
+  const useSvetlanaAvatar = shouldUseSvetlanaAvatar({
+    name,
+    iconName,
+    iconUrl,
+    isDefaultAssistant,
+  });
+  const avatar = useSvetlanaAvatar ? (
+    <span
+      className={styles.expertAgentAvatar}
+      style={{
+        width: MESSAGE_AVATAR_SIZE,
+        height: MESSAGE_AVATAR_SIZE,
+        borderRadius: "50%",
+        overflow: "hidden",
+        display: "inline-flex",
+        border: "2px solid #10b981",
+        boxShadow: speaking ? "0 0 0 5px rgba(16,185,129,.28), 0 0 20px rgba(16,185,129,.34)" : "0 0 0 3px rgba(16,185,129,.12)",
+      }}
+    >
+      <img
+        src={publicUrl("images/avatar/svetlana-master.jpg")}
+        alt=""
+        width={MESSAGE_AVATAR_SIZE}
+        height={MESSAGE_AVATAR_SIZE}
+        style={{ width: "100%", height: "100%", objectFit: "cover" }}
+      />
+    </span>
+  ) : (
     <ExpertAgentAvatar
       iconName={iconName}
       iconUrl={iconUrl}

@@ -14,6 +14,16 @@
 import "@testing-library/jest-dom/vitest";
 import { afterEach, vi } from "vitest";
 import { cleanup } from "@testing-library/react";
+import { DOMMatrix } from "@napi-rs/canvas";
+
+// pdfjs-dist reads DOMMatrix at module initialization. jsdom does not provide it,
+// so use the native DOMMatrix implementation already compatible with pdfjs.
+if (typeof globalThis.DOMMatrix === "undefined") {
+  Object.defineProperty(globalThis, "DOMMatrix", {
+    configurable: true,
+    value: DOMMatrix,
+  });
+}
 
 // Auto-mock react-i18next so components' ``t(key, fallback)`` calls
 // resolve synchronously to ``fallback`` without needing the real
@@ -48,7 +58,11 @@ vi.mock("react-i18next", async (importOriginal) => {
         }
         return key;
       },
-      i18n: { language: "zh", changeLanguage: () => Promise.resolve() },
+      i18n: {
+        language: "zh",
+        changeLanguage: () => Promise.resolve(),
+        exists: () => false,
+      },
     }),
     Trans: ({ children }: { children?: React.ReactNode }) => children,
   };

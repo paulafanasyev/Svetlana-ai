@@ -3232,7 +3232,8 @@
     "readAloud": "Read aloud",
     "micNotAvailable": "Audio recording unavailable — please use HTTPS",
     "sttNotAvailable": "Voice input not available on this device (HTTPS required)",
-    "ttsAutoplayBlocked": "Autoplay blocked by browser — tap read-aloud again"
+    "ttsAutoplayBlocked": "Autoplay blocked by browser — tap read-aloud again",
+    "browserNoVoice": "No browser voice is available for this language. Switching to Edge TTS."
   },
   "security": {
     "intro": "Configure runtime security policies for agents. Running agents reload automatically after save.",
@@ -8027,5 +8028,11 @@
     "nameRequired": "Enter a name first",
     "failed": "Polish failed. Please try again later.",
     "emptyResult": "The model returned an empty result"
+  },
+  "svetlana": {
+    "name": "Svetlana 2.0",
+    "openChat": "Open chat with Svetlana",
+    "speaking": "Speaking…",
+    "ready": "Ready to help"
   }
 }

@@ -1141,7 +1141,8 @@ def test_build_harness_config_language_follows_owner_locale(manager: AgentManage
     assert manager._build_harness_config(row).language == "en"
 
     missing = replace(row, user_id=None)
-    assert manager._build_harness_config(missing).language == "zh"
+    # The harness currently supports EN/ZH only; RU uses its EN fallback.
+    assert manager._build_harness_config(missing).language == "en"
 
 
 def test_build_harness_config_keeps_system_prompt_after_bootstrap(
@@ -3289,3 +3290,32 @@ async def test_restore_respects_runtime_capability_and_expert_scope(
     finally:
         for row in rows:
             await manager.stop(row.agent_id)
+
+
+@pytest.mark.parametrize(
+    ("raw", "expected"),
+    [
+        ("ru", "en"),
+        ("ru-RU", "en"),
+        ("vi", "en"),
+        ("vi-VN", "en"),
+        ("en", "en"),
+        ("en-US", "en"),
+        ("zh", "zh"),
+        ("zh-CN", "zh"),
+        (None, "en"),
+    ],
+)
+def test_to_harness_locale_maps_to_supported_runtime_language(
+    raw: str | None, expected: str
+) -> None:
+    from octop.infra.utils.locale import to_harness_locale
+
+    assert to_harness_locale(raw) == expected
+
+
+def test_build_harness_config_uses_supported_language_for_russian_default(
+    manager: AgentManager,
+) -> None:
+    cfg = manager._build_harness_config(_row(agent_id="AGT001"))
+    assert cfg.language == "en"

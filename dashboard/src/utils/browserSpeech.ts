@@ -16,6 +16,7 @@ type SpeechError = SpeechSynthesisErrorEvent["error"];
 
 export interface SpeakBrowserCallbacks {
   onDone: () => void;
+  locale?: string;
   /** Chrome has no voice for this language (common on Linux with zh content). */
   onNoVoice?: () => void;
 }
@@ -91,13 +92,16 @@ function pickVoiceForLocale(
 
   if (matches.length === 0) return undefined;
 
+  const preferredVoice =
+    prefix === "ru"
+      ? /(svetlana|dariya|irina|milena|alena|алена|алёна|милена|ирина|светлана|female|жен)/i
+      : prefix === "vi"
+        ? /(hoai.?my|female|woman|nữ)/i
+        : /(huihui|xiaoxiao|tingting|yaoyao|kangkang|mandarin|chinese|中文|普通话)/i;
+
   return (
+    matches.find((v) => preferredVoice.test(v.name)) ??
     matches.find((v) => v.localService) ??
-    matches.find((v) =>
-      /huihui|xiaoxiao|tingting|yaoyao|kangkang|mandarin|chinese|中文|普通话/i.test(
-        v.name,
-      ),
-    ) ??
     matches.find((v) => !/google/i.test(v.name)) ??
     matches[0]
   );
@@ -201,8 +205,8 @@ export function speakBrowserText(
   void waitForVoices().then((voices) => {
     if (rt.session !== session) return;
 
-    const locale = detectSpeechLocale(text);
-    if (!hasBrowserVoiceForText(text, voices)) {
+    const locale = detectSpeechLocale(text, callbacks.locale);
+    if (!hasBrowserVoiceForText(text, voices, locale)) {
       callbacks.onNoVoice?.();
       return;
     }

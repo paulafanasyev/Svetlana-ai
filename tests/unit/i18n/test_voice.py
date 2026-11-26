@@ -52,3 +52,19 @@ def test_unknown_realtime_code_falls_back() -> None:
     assert realtime_error_message(None, "en") == (
         "Realtime speech recognition failed. Retry in a moment."
     )
+
+
+def test_voice_errors_are_localized_for_russian_and_vietnamese() -> None:
+    exc = RuntimeError("AuthFailure.SecretIdNotFound: The SecretId is not found.")
+    assert format_voice_probe_error(exc, "ru") == (
+        "SecretId не найден. Проверьте правильность ключа."
+    )
+    assert format_voice_probe_error(exc, "vi") == (
+        "Không tìm thấy SecretId. Hãy kiểm tra khóa đã nhập."
+    )
+    assert realtime_error_message(4003, "ru") == (
+        "Для этой учётной записи Tencent Cloud не включено распознавание речи в реальном времени."
+    )
+    assert realtime_error_message(4003, "vi") == (
+        "Tài khoản Tencent Cloud này chưa bật tính năng nhận dạng giọng nói thời gian thực."
+    )

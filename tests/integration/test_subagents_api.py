@@ -175,8 +175,8 @@ async def test_install_catalog_subagent(env: Any) -> None:
     assert body["installed"] is True
     assert body["slug"] == "engineering-software-architect"
     assert body["path"] == "agents/engineering-software-architect.md"
-    assert body["locale"] in ("zh", "en")
-    assert body["requested_locale"] in ("zh", "en")
+    assert body["locale"] == "en"  # RU translation is not bundled; English fallback is used.
+    assert body["requested_locale"] == "ru"
 
     r_file = await c.get(
         f"/api/agents/{aid}/workspace/file",

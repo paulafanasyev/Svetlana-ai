@@ -5,6 +5,7 @@ from __future__ import annotations
 import json
 import re
 from pathlib import Path
+from string import Formatter
 
 import pytest
 
@@ -15,8 +16,8 @@ from octop.infra.utils.locale import resolve_request_locale
 
 def test_every_error_code_has_i18n_entry():
     for code in ErrorCode:
-        assert error_message(code.value, "en")
-        assert error_message(code.value, "zh")
+        for locale in ("en", "zh", "ru", "vi"):
+            assert error_message(code.value, locale)
 
 
 def test_error_message_zh():
@@ -103,3 +104,44 @@ def test_config_file_corrupt_interpolates_path_and_detail():
     for locale in ("en", "zh"):
         msg = error_message("CONFIG_FILE_CORRUPT", locale, **kwargs)
         assert "{path}" not in msg and "{detail}" not in msg
+
+
+def _flatten_i18n(node: dict, prefix: str = "") -> dict[str, str]:
+    result: dict[str, str] = {}
+    for key, value in node.items():
+        path = f"{prefix}.{key}" if prefix else key
+        if isinstance(value, dict):
+            result.update(_flatten_i18n(value, path))
+        elif isinstance(value, str):
+            result[path] = value
+    return result
+
+
+def _format_fields(message: str) -> set[str]:
+    return {
+        field_name
+        for _literal, field_name, _format_spec, _conversion in Formatter().parse(message)
+        if field_name is not None
+    }
+
+
+@pytest.mark.parametrize("locale", ["ru", "vi"])
+def test_backend_error_and_stream_locales_are_complete(locale: str) -> None:
+    repo = Path(__file__).resolve().parents[3]
+    source = json.loads((repo / "src/octop/i18n/en.json").read_text(encoding="utf-8"))
+    translated = json.loads((repo / f"src/octop/i18n/{locale}.json").read_text(encoding="utf-8"))
+    for group in ("errors", "stream_errors"):
+        expected = _flatten_i18n(source[group])
+        actual = _flatten_i18n(translated.get(group, {}))
+        assert set(actual) == set(expected)
+        for key, english in expected.items():
+            assert _format_fields(actual[key]) == _format_fields(english), (
+                f"{locale}.{group}.{key} changed format fields"
+            )
+
+
+def test_bridge_display_name_interpolates_name():
+    for locale in ("en", "ru", "vi"):
+        message = error_message("BRIDGE_DISPLAY_NAME_TAKEN", locale, name="Octop peer")
+        assert "Octop peer" in message
+        assert "{name}" not in message

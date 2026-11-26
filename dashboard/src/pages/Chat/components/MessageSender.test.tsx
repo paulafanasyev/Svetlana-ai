@@ -1,6 +1,9 @@
 import { fireEvent, render, screen } from "@testing-library/react";
 import { describe, expect, it, vi } from "vitest";
-import MessageSender, { ExpertMessageAvatar } from "./MessageSender";
+import MessageSender, {
+  ExpertMessageAvatar,
+  shouldUseSvetlanaAvatar,
+} from "./MessageSender";
 import { ChatAgentProfileProvider } from "../ChatAgentProfileContext";
 
 vi.mock("react-i18next", () => ({
@@ -32,6 +35,39 @@ describe("MessageSender", () => {
     fireEvent.click(btn);
     expect(onOpen).toHaveBeenCalledTimes(1);
     expect(onOpen).toHaveBeenCalledWith(undefined);
+  });
+
+  it.each(["Светлана", "Светлана 2.0", "Svetlana", "Svetlana AI"])(
+    "uses the brand avatar for %s",
+    (name) => {
+      expect(shouldUseSvetlanaAvatar({ name })).toBe(true);
+    },
+  );
+
+  it("uses the brand avatar for the primary assistant in a single-agent chat", () => {
+    expect(
+      shouldUseSvetlanaAvatar({
+        name: "Assistant",
+        isDefaultAssistant: true,
+      }),
+    ).toBe(true);
+  });
+
+  it("does not replace another agent's missing avatar with Svetlana", () => {
+    expect(shouldUseSvetlanaAvatar({ name: "Виталий Гурнов" })).toBe(false);
+    expect(shouldUseSvetlanaAvatar({ name: "Research Agent" })).toBe(false);
+  });
+
+  it("respects an explicitly configured avatar or icon", () => {
+    expect(shouldUseSvetlanaAvatar({ name: "Светлана", iconName: "user" })).toBe(
+      false,
+    );
+    expect(
+      shouldUseSvetlanaAvatar({
+        name: "Светлана",
+        iconUrl: "https://example.com/avatar.png",
+      }),
+    ).toBe(false);
   });
 
   it("opens the member profile id and shows a host tooltip", () => {

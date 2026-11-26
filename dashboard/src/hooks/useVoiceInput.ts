@@ -265,9 +265,15 @@ interface RealtimeCapture {
 }
 
 function realtimeSttUrl(language: string): string {
-  const params = new URLSearchParams({
-    locale: language.toLowerCase().startsWith("zh") ? "zh" : "en",
-  });
+  const normalized = language.toLowerCase();
+  const locale = normalized.startsWith("ru")
+    ? "ru"
+    : normalized.startsWith("vi")
+      ? "vi"
+      : normalized.startsWith("zh")
+        ? "zh"
+        : "en";
+  const params = new URLSearchParams({ locale });
   const token = getAuthToken();
   if (token) params.set("token", token);
   return `${getWsUrl("/voice/stt-stream")}?${params.toString()}`;

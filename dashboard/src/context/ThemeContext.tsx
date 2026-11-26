@@ -171,7 +171,7 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
 
     // Keep the PWA theme-color meta tag in sync with the resolved mode so
     // the browser chrome (address bar, status bar, PWA title bar) matches.
-    const themeColor = mode === "dark" ? "#1a1c28" : "#ffffff";
+    const themeColor = mode === "dark" ? "#0a0e1a" : "#ffffff";
     document
       .querySelectorAll<HTMLMetaElement>("meta[name='theme-color']")
       .forEach((el) => {

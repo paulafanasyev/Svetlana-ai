@@ -458,7 +458,7 @@
     "BRIDGE_NOT_CONNECTED": "Cloud collab is not connected. Reconnect, or check that the peer is online.",
     "BRIDGE_TUNNEL_FAILED": "Cloud collab request failed. The link may have dropped — reconnect and try again.",
     "BRIDGE_REMOTE_UNSUPPORTED": "This action is not available on the peer expert. Manage it on the peer Octop.",
-    "BRIDGE_DISPLAY_NAME_TAKEN": "Display name \"{{name}}\" is already in use. Choose another.",
+    "BRIDGE_DISPLAY_NAME_TAKEN": "Display name \"{name}\" is already in use. Choose another.",
     "BRIDGE_PEER_ALREADY_LINKED": "This peer account is already linked as \"{name}\". Use the existing connection.",
     "BRIDGE_CONNECTION_LIMIT": "At most {limit} cloud collab connections per user. Delete one to add another.",
     "BRIDGE_SELF_CONNECT": "Cannot add this Octop instance as a peer of itself.",

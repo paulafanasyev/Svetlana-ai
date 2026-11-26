@@ -69,13 +69,14 @@ export const voiceApi = {
       form,
     );
   },
-  synthesize: (text: string, provider?: string) =>
+  synthesize: (text: string, provider?: string, voiceId?: string) =>
     requestBlob("/voice/tts", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         text,
         ...(provider ? { provider } : {}),
+        ...(voiceId ? { voice_id: voiceId } : {}),
       }),
     }),
   /**

@@ -1,0 +1,52 @@
+name: Svetlana Dashboard CI
+
+on:
+  pull_request:
+    branches:
+      - svetlana-pilot
+    paths:
+      - "dashboard/**"
+      - ".github/workflows/svetlana-dashboard-ci.yml"
+
+permissions:
+  contents: read
+
+# Keep only the newest PR validation active. Repeated commits must not leave
+# older Vitest runs competing for the same GitHub runner capacity.
+concurrency:
+  group: svetlana-dashboard-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  dashboard:
+    name: Dashboard lint, tests and production build
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: dashboard/package-lock.json
+
+      - name: Install dashboard dependencies
+        id: install
+        run: npm ci
+        working-directory: dashboard
+
+      - name: Lint dashboard
+        run: npm run lint
+        working-directory: dashboard
+
+      - name: Run dashboard unit tests
+        run: npm test
+        working-directory: dashboard
+
+      - name: Build dashboard
+        if: ${{ always() && steps.install.outcome == 'success' }}
+        run: npm run build
+        working-directory: dashboard

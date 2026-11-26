@@ -1,8 +1,7 @@
 import { describe, expect, it, vi, beforeEach } from "vitest";
-import { render, screen, waitFor } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { MemoryRouter, Route, Routes, useNavigate } from "react-router-dom";
-import { useEffect } from "react";
 import AuthGuard from "./AuthGuard";
 
 vi.mock("../api/modules/auth", () => ({
@@ -71,31 +70,33 @@ describe("AuthGuard offline boot", () => {
 
     function NavProbe() {
       const navigate = useNavigate();
-      useEffect(() => {
-        navigate("/b");
-      }, [navigate]);
-      return <div>protected-shell</div>;
+      return (
+        <div>
+          <span>route-a</span>
+          <button type="button" onClick={() => navigate("/b")}>
+            go-to-b
+          </button>
+        </div>
+      );
     }
 
+    const user = userEvent.setup();
     render(
       <MemoryRouter initialEntries={["/a"]}>
         <AuthGuard>
           <Routes>
             <Route path="/a" element={<NavProbe />} />
-            <Route path="/b" element={<div>protected-shell</div>} />
+            <Route path="/b" element={<div>route-b</div>} />
           </Routes>
         </AuthGuard>
       </MemoryRouter>,
     );
 
-    expect(await screen.findByText("protected-shell")).toBeInTheDocument();
-    await waitFor(() => {
-      expect(authApi.getAuthStatus).toHaveBeenCalledTimes(1);
-    });
-    // Give route-driven navigate identity churn a tick; gate must not re-run.
-    await waitFor(() => {
-      expect(screen.getByText("protected-shell")).toBeInTheDocument();
-    });
+    expect(await screen.findByText("route-a")).toBeInTheDocument();
+    await user.click(screen.getByRole("button", { name: "go-to-b" }));
+    expect(await screen.findByText("route-b")).toBeInTheDocument();
+
+    // Navigating within the protected shell must not repeat the auth gate.
     expect(authApi.getAuthStatus).toHaveBeenCalledTimes(1);
     expect(authApi.me).toHaveBeenCalledTimes(1);
   });

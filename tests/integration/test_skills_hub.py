@@ -209,7 +209,7 @@ async def test_hub_install_persists_market_name_and_icon(
     assert detail.status_code == 200, detail.text
     payload = detail.json()
     assert payload["slug"] == "stable-english-slug"
-    assert payload["name"] == "中文展示名称"
+    assert payload["name"] == "Friendly Name"
     assert payload["icon_url"] == icon_url
     assert payload["emoji"] == "📦"
     assert payload["frontmatter"]["name"] == "english-package-name"

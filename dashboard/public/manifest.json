@@ -1,16 +1,16 @@
 {
   "id": "/",
-  "name": "Octop",
-  "short_name": "Octop",
-  "description": "Smarter self-hosted AI assistant — multi-user, multi-agent",
+  "name": "Светлана 2.0",
+  "short_name": "Светлана",
+  "description": "Светлана 2.0 — интеллектуальный помощник",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
   "orientation": "any",
-  "background_color": "#0f1117",
-  "theme_color": "#ffffff",
+  "background_color": "#0A0E1A",
+  "theme_color": "#6366F1",
   "prefer_related_applications": false,
-  "lang": "zh-CN",
+  "lang": "ru",
   "icons": [
     {
       "src": "/pwa-192.png",
@@ -37,5 +37,8 @@
       "purpose": "any"
     }
   ],
-  "categories": ["productivity", "utilities"]
+  "categories": [
+    "productivity",
+    "utilities"
+  ]
 }

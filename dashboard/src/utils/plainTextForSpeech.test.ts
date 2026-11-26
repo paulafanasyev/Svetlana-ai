@@ -28,6 +28,11 @@ describe("detectSpeechLocale", () => {
   it("uses zh-CN for Chinese text regardless of navigator", () => {
     expect(detectSpeechLocale("你好世界")).toBe("zh-CN");
   });
+
+  it("uses the selected Russian or Vietnamese UI locale", () => {
+    expect(detectSpeechLocale("Привет", "ru")).toBe("ru-RU");
+    expect(detectSpeechLocale("Xin chào", "vi")).toBe("vi-VN");
+  });
 });
 
 describe("hasBrowserVoiceForText", () => {

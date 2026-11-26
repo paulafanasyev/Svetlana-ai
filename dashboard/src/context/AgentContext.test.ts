@@ -131,6 +131,7 @@ describe("projectChatAgentOption", () => {
     );
     expect(projected).toEqual({
       agent_id: "S1",
+      managed_runner: null,
       name: "S1",
       icon_name: "cpu",
       icon_url: "https://example/icon.png",

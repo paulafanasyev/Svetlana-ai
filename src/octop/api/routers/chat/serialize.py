@@ -27,7 +27,7 @@ from octop.infra.gateway.process.message_keys import (
     parse_checkpoint_ts_ms,
 )
 from octop.infra.utils.llm_text import strip_thinking as _strip_thinking
-from octop.infra.utils.locale import normalize_locale
+from octop.infra.utils.locale import SUPPORTED_LOCALES, normalize_locale
 
 logger = logging.getLogger(__name__)
 
@@ -265,8 +265,18 @@ def _strip_attachment_llm_noise(
     text sections (``[附件]`` / ``[Attachment]``), dumped ``image_url`` JSON text,
     and ``image_url`` blocks that the dashboard renders via ``inbound_attachments``.
     """
-    empty_image = (
-        attachment_empty_image(normalize_locale(locale)).strip() if strip_empty_image else ""
+    # Image-only sentinel text can have been written under a different locale
+    # than the user's current preference (for example, history created before
+    # switching from ZH to RU). Strip every known localized sentinel so it does
+    # not leak into the visible transcript after a language change.
+    empty_images = (
+        {
+            attachment_empty_image(candidate).strip()
+            for candidate in SUPPORTED_LOCALES
+            if attachment_empty_image(candidate).strip()
+        }
+        if strip_empty_image
+        else set()
     )
     out: list[dict[str, Any]] = []
     for block in blocks:
@@ -280,7 +290,7 @@ def _strip_attachment_llm_noise(
         text = str(block.get("text") or "")
         original = text
         text, _image_refs = _extract_dumped_image_refs_from_text(text)
-        if empty_image and text.strip() == empty_image:
+        if text.strip() in empty_images:
             continue
         cleaned = _strip_attachment_hints_from_text(text)
         if not cleaned:
